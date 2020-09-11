@@ -6,8 +6,10 @@ dnf update
 
 reboot
 
+copy all the files after the first updates and the reboot to the appropriate directories
+
 ```bash
-dnf install asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi tlp tlp-rdw
+dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi tlp tlp-rdw
 dkms build acpi_call -v 1.1.0
 dkms install acpi_call -v 1.1.0
 ```
