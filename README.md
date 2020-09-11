@@ -7,7 +7,7 @@ dnf update
 reboot
 
 ```bash
-dnf install asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi
+dnf install asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi tlp tlp-rdw
 dkms build acpi_call -v 1.1.0
 dkms install acpi_call -v 1.1.0
 ```
