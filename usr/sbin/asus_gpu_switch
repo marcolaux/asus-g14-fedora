@@ -1,0 +1,33 @@
+#!/bin/bash
+
+GPUFILE=/etc/asus_nvidia
+
+if [ -f $GPUFILE ]; then
+   echo "$GPUFILE exists."
+   GPUFILEPRESENT=true
+else
+   echo "$GPUFILE does not exist."
+   GPUFILEPRESENT=false
+fi
+
+if [[ $GPUFILEPRESENT == false ]]; then
+	echo "set to Nvidia mode flag and restart GDM"
+        systemctl stop gdm
+	sudo sh -c 'echo "\\_SB.PCI0.GPP0.PG00._ON" > /proc/acpi/call'
+        modprobe nvidia_uvm
+        modprobe nvidia_drm
+        modprobe nvidia_modeset
+        modprobe nvidia
+	touch /etc/asus_nvidia
+        systemctl restart gdm.service
+else
+	echo "deactivating nvidia"
+	systemctl stop gdm
+	rmmod nvidia_uvm
+	rmmod nvidia_drm
+	rmmod nvidia_modeset
+	rmmod nvidia
+	sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+	rm /etc/asus_nvidia
+	systemctl restart gdm.service
+fi
