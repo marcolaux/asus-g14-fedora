@@ -29,8 +29,11 @@ dnf install tlp tlp-rdw
 4.1 Add the asus-linux.org repo ([Instructions from asus-linux.org](https://asus-linux.org/wiki/keyboard-leds-anime/))
 
 Create the file
+
 | /etc/yum.repos.d/asus.repo
+
 with the following content
+
 ```bash
 [asus]
 name=asus
