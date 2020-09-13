@@ -12,14 +12,14 @@ fi
 
 if [[ $GPUFILEPRESENT == false ]]; then
 	echo "set to Nvidia mode flag and restart GDM"
-        systemctl stop gdm
+	systemctl stop gdm
 	sudo sh -c 'echo "\\_SB.PCI0.GPP0.PG00._ON" > /proc/acpi/call'
-        modprobe nvidia_uvm
-        modprobe nvidia_drm
-        modprobe nvidia_modeset
-        modprobe nvidia
+	modprobe nvidia_uvm
+	modprobe nvidia_drm
+	modprobe nvidia_modeset
+	modprobe nvidia
 	touch /etc/asus_nvidia
-        systemctl restart gdm.service
+	systemctl restart gdm.service
 else
 	echo "deactivating nvidia"
 	systemctl stop gdm

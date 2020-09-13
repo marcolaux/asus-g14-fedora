@@ -11,23 +11,12 @@ else
 fi
 
 if [ $GPUFILEPRESENT == true ]; then
-        echo "activating and loading Nvidia"
-#        systemctl stop gdm
-#        sudo sh -c 'echo "\\_SB.PCI0.GPP0.PG00._ON" > /proc/acpi/call'
-        modprobe nvidia_uvm
-        modprobe nvidia_drm
-        modprobe nvidia_modeset
-        modprobe nvidia
-#        touch /etc/asus_nvidia
-#        systemctl restart gdm
+  echo "activating and loading Nvidia"
+  modprobe nvidia_uvm
+  modprobe nvidia_drm
+  modprobe nvidia_modeset
+  modprobe nvidia
 else
-    	echo "deactivating nvidia"
-#        systemctl stop gdm
-#        rmmod nvidia_uvm
-#        rmmod nvidia_drm
-#        rmmod nvidia_modeset
-#        rmmod nvidia
-        sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
-#        rm /etc/asus_nvidia
-#        systemctl restart gdm
+  echo "deactivating nvidia"
+  sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
 fi

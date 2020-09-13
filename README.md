@@ -34,9 +34,13 @@ dkms install acpi_call -v 1.1.0
 ```
 
 > akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
+
 > asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi installs the currently necesary Kernel modules from asus-linux.org to get the function keys and custom fan control working
+
 > kernel-devel is necesarry for the dynamic kernel modules to compile
+
 > building and installing the acpi_call modules from this repo is needed to make the custom fan control working
+
 >    it's also used by custom scripts to disable the Nvidia GPU (more on that later)
 
 5. copy all the files to the appropriate directories
@@ -51,9 +55,13 @@ chmod +x /usr/sbin/asus_gpu_boot
 chmod +x /usr/sbin/asus_gpu_switch
 ```
 > we clone this repo
+
 > we go to the repo directory
+
 > we copy everything in this repo of etc to /etc/
+
 > we copy everything in this repo of usr to /usr/
+
 > we make the scripts in /usr/sbin/asus... executable
 
 6. Enable the custom services
@@ -64,6 +72,7 @@ systemctl enable asusgpuboot.service
 ```
 
 > asusboot.service removes and adds again the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
+
 > asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand)
 
 5. Reboot
