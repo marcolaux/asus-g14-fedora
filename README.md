@@ -7,13 +7,13 @@ In addition to the Kernel modules from asus-linux.org I made some scripts to ena
 In this Repo also is a GNOME Shell extension that helps with switching between Nvidia Power on and off. Just enable "Amd Nvidia switcher" in Extensions or GNOME Tweaks and you will see a new icon in the top bar. Just click on it and you will switch the power state of the Nvidia GPU (warning: this will log you out).
 With the NVIDIA powered off power drain in idle is just between 5 - 6,5 watts. With the Nvidia on standby it's usually 10-12 watts while idle.
 
-So let's go through this...
+So let's go through this (I it works seemless in this order as I haven't done a complete new install, yet)...
 
 ## Installation process
 
-1. Install Fedora 32
+**1. Install Fedora 32**
 
-2. Boot to your installation and update everything
+**2. Boot to your installation and update everything**
 
 ```bash
 dnf update
@@ -22,9 +22,9 @@ dnf install tlp tlp-rdw
 
 > tlp is used for automatic power management for some hardware components (so you don't have to powertop --auto-tune)
 
-3. Reboot
+**3. Reboot**
 
-4. Install the following packages
+**4. Install the following packages**
 
 ```bash
 dnf update
@@ -43,7 +43,7 @@ dkms install acpi_call -v 1.1.0
 
 >    it's also used by custom scripts to disable the Nvidia GPU (more on that later)
 
-5. copy all the files to the appropriate directories
+**5. copy all the files to the appropriate directories**
 
 ```bash
 git clone https://github.com/hyphone/asus-g14-fedora.git
@@ -64,7 +64,7 @@ chmod +x /usr/sbin/asus_gpu_switch
 
 > we make the scripts in /usr/sbin/asus... executable
 
-6. Enable the custom services
+**6. Enable the custom services**
 
 ```bash
 systemctl enable asusboot.service
@@ -75,9 +75,9 @@ systemctl enable asusgpuboot.service
 
 > asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand)
 
-5. Reboot
+**5. Reboot**
 
-6. You can switch AMD / Nvidia on demand via the gnome extension or with "systemctl start asusgpuswitch.service"
+**6. You can switch AMD / Nvidia on demand via the gnome extension or with "systemctl start asusgpuswitch.service"**
 
 ---
 
