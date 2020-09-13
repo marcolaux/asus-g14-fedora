@@ -91,7 +91,7 @@ systemctl enable asusgpuboot.service
 
 > asusboot.service removes and adds again the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
-> asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand)
+> asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand). This service gets called on boot and resume.
 
 **5. Reboot**
 
@@ -135,7 +135,7 @@ removes and adds again the i2c_hid modules because on Fedora 32 the touchpad som
 ```
 etc/systemd/system/asusgpuboot.service
 ```
-calls /usr/sbin/asus_gpu_boot on boot
+calls /usr/sbin/asus_gpu_boot on boot and resume (from suspend)
 
 ```
 etc/systemd/system/asusgpuswitch.service
@@ -150,7 +150,7 @@ marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand" as I
 ```
 usr/sbin/asus_boot
 ```
-called by asusboot.service and removes / adds the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
+called by asusboot.service, gets called on boot / resume and removes / adds the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
 ```
 usr/sbin/asus_gpu_boot
