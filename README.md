@@ -24,8 +24,23 @@ dnf install tlp tlp-rdw
 
 **3. Reboot**
 
-**4. Install the following packages**
+**4. Add asus-linux.org repo and install some packages**
 
+4.1 Add the asus-linux.org repo ([Instructions from asus-linux.org](https://asus-linux.org/wiki/keyboard-leds-anime/))
+
+Create the file
+| /etc/yum.repos.d/asus.repo
+with the following content
+```bash
+[asus]
+name=asus
+failovermethod=priority
+baseurl=https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_32/
+enabled=1
+gpgcheck=0
+```
+
+4.2 Update the repos and install some packages
 ```bash
 dnf update
 dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi
