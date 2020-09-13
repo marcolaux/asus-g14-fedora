@@ -153,13 +153,13 @@ In both cases GDM gets restarted. This will log you out so be sure you save your
 ```
 usr/share/gnome-shell/amd-nvidia-switcher@marcaux.de
 ```
-This is a GNOME-Shell extension I quickly wrote for switching between AMD-only and Nvidia on-demand via GNOME-Shell so no command line or terminal is nacesarry.
+This is a GNOME-Shell extension I quickly wrote for switching between AMD-only and Nvidia on-demand via GNOME-Shell so no command line or terminal is necesarry.
 Just click the AMD or Nvidia icon in the top bar of GNOME-Shell, type your password, you will get logged out and the Nvidia is powered on or off.
 
 ```
 usr/share/pulseaudio/alsa-mixer/paths
 ```
-The currently needed adjustments for pulseaudio so volume control for the speakers works [](https://asus-linux.org/wiki/g14-and-g15/hardware/audio/)
+The currently needed adjustments for pulseaudio so volume control for the speakers works [see more at asus-linux.org](https://asus-linux.org/wiki/g14-and-g15/hardware/audio/)
 
 ```
 usr/share/acpi_call-1.10
