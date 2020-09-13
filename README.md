@@ -124,3 +124,45 @@ etc/systemd/system/asusgpuswitch.service
 ```
 calls /usr/sbin/asus_gpu_switch
 
+```
+etc/tlp.conf
+```
+marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand" as I've read that this is the only mode supported by Ryzen CPUs
+
+```
+usr/sbin/asus_boot
+```
+called by asusboot.service and removes / adds the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
+
+```
+usr/sbin/asus_gpu_boot
+```
+called by asusgpuboot.service and powers the GPU down when not set or loads the Nvidia driver when set
+
+```
+usr/sbin/asus_gpu_switch
+```
+sets or removes the file /etc/asus_nvidia
+> this file will be used to check what mode the user selected. If this file is present AMD+Nvidia on-demand is used. If the file is not present AMD-only with the Nvidia powered down is used.
+
+If the /etc/asus_nvidia is currently present this file will get deleted and the Nvidia driver gets unloaded. The Nvidia GPU also gets powered down.
+If the /etc/asus_nvidia is currently NOT present this file will get created, the Nvidia GPU gets powered up and the Nvidia drivers get loaded.
+
+In both cases GDM gets restarted. This will log you out so be sure you save your stuff before doing this.
+
+```
+usr/share/gnome-shell/amd-nvidia-switcher@marcaux.de
+```
+This is a GNOME-Shell extension I quickly wrote for switching between AMD-only and Nvidia on-demand via GNOME-Shell so no command line or terminal is nacesarry.
+Just click the AMD or Nvidia icon in the top bar of GNOME-Shell, type your password, you will get logged out and the Nvidia is powered on or off.
+
+```
+usr/share/pulseaudio/alsa-mixer/paths
+```
+The currently needed adjustments for pulseaudio so volume control for the speakers works [](https://asus-linux.org/wiki/g14-and-g15/hardware/audio/)
+
+```
+usr/share/acpi_call-1.10
+```
+This is the Kernel module acpi_call needed to power down the Nvidia and to control the fans manually via asusctl.
+I prepared this folder and adjusted the dkms.conf in it so the compilation works (didn't work for me from the original repo).
