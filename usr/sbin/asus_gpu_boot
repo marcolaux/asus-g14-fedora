@@ -3,11 +3,11 @@
 GPUFILE=/etc/asus_nvidia
 
 if [ -f $GPUFILE ]; then
-   echo "$GPUFILE exists."
-   GPUFILEPRESENT=true
+  echo "$GPUFILE exists."
+  GPUFILEPRESENT=true
 else
-   echo "$GPUFILE does not exist."
-   GPUPRESENT=false
+  echo "$GPUFILE does not exist."
+  GPUPRESENT=false
 fi
 
 if [ $GPUFILEPRESENT == true ]; then
@@ -16,7 +16,9 @@ if [ $GPUFILEPRESENT == true ]; then
   modprobe nvidia_drm
   modprobe nvidia_modeset
   modprobe nvidia
+  asusctl -p normal
 else
   echo "deactivating nvidia"
   sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  asusctl -p silent
 fi
