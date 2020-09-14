@@ -186,14 +186,3 @@ This is the Kernel module acpi_call needed to power down the Nvidia and to contr
 I prepared this folder and adjusted the dkms.conf in it so the compilation works (didn't work for me from the original repo).
 
 --
-
-## Important
-
-### Fan Curves
-I wouldn't fiddle too much with the fan curves if the Nvidia is active (powered on). In my tests the the fan curves only apply to the left fan and the right fan (where the Nvidia GPU sits) does not even turn on if the fan curve is custom.
-
-So I decided to let the "normal" fan curve to be default and only adjusted the "silent" fan curve.
-
-When switching to AMD only the fan curve get's switched to silent as the Nvidia is powered off.
-
-When switching to AMD+Nvidia on demand the curve get's switched to normal so the fans work as they should.
