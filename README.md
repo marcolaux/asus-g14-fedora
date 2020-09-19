@@ -1,4 +1,10 @@
-# Fedora 32 Setup with an ASUS Zephyrus G14
+# Fedora 32 Setup with an ASUS Zephyrus G14 GA401IV
+
+**updated for BIOS 216**
+In 216 some things about how the dGPU works changed. Now now acpi_call or bbswitch is needed to power the Nvidia down.
+We can now just unbind it and set the power control for the Nvidia to "auto".
+GPU switching without restarting is still possible. With the service here it get's unbinded to have AMD only mode with power saving or for hybrid mode it get's binded.
+---
 
 This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 32.
 
@@ -59,7 +65,7 @@ dkms install acpi_call -v 1.1.0
 
 > building and installing the acpi_call modules from this repo is needed to make the custom fan control working
 
->    it's also used by custom scripts to disable the Nvidia GPU (more on that later)
+>    ~~it's also used by custom scripts to disable the Nvidia GPU (more on that later)~~
 
 **5. copy all the files to the appropriate directories**
 
@@ -95,7 +101,7 @@ systemctl enable asusgpuboot.service
 
 **5. Reboot**
 
-**6. You can switch AMD / Nvidia on demand via the gnome extension or with "systemctl start asusgpuswitch.service"**
+**6. You can switch AMD / Nvidia on demand via the gnome extension or with "sudo asus_gpu_switch"**
 
 ---
 
