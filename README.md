@@ -1,6 +1,7 @@
 # Fedora 32 Setup with an ASUS Zephyrus G14 GA401IV
 
 **updated for BIOS 216**
+
 In 216 some things about how the dGPU works changed. Now no acpi_call or bbswitch is needed to power the Nvidia down.
 We can now just unbind it and set the power control for the Nvidia to "auto".
 GPU switching without restarting is still possible. With the service here it get's unbinded to have AMD only mode with power saving or for hybrid mode it get's binded.
