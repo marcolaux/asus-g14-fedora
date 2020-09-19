@@ -11,14 +11,10 @@ else
 fi
 
 if [ $GPUFILEPRESENT == true ]; then
-  echo "activating and loading Nvidia"
-  modprobe nvidia_uvm
-  modprobe nvidia_drm
-  modprobe nvidia_modeset
-  modprobe nvidia
+  echo "Nvidia selected, choosing power profile normal"
   asusctl -p normal
 else
-  echo "deactivating nvidia"
-  sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  echo "AMD mode selected, unbinding nvidia and setting power profile to silent"
+  echo -n "0000:01:00.0" > /sys/bus/pci/drivers/nvidia/unbind
   asusctl -p silent
 fi

@@ -1,4 +1,11 @@
 #!/bin/bash
 
+echo "re-initializing touchpad"
 rmmod i2c_hid
 modprobe i2c_hid
+
+echo "auto power control to nvidia"
+echo auto > /sys/bus/pci/devices/0000\:01\:00.0/power/control
+echo auto > /sys/bus/pci/devices/0000\:01\:00.1/power/control
+echo auto > /sys/bus/pci/devices/0000\:01\:00.2/power/control
+echo auto > /sys/bus/pci/devices/0000\:01\:00.3/power/control
