@@ -78,7 +78,7 @@ systemctl enable asusgpuboot.service
 
 > asusboot.service removes and adds again the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
-> asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand). This service gets called on boot and resume.
+> asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand). This service gets called on boot.
 
 **5. Reboot**
 
@@ -98,21 +98,8 @@ On "silent" I disabled turbo and I usually use this while on battery.
 ```
 etc/modprobe.d/asus.conf
 ```
-This disables the folowing modules:
-nouveau, nvidiafb, rivafb, i2c_nvidia_gpu, nvidia_uvm, nvidia_drm, nvidia_modeset, nvidia
+Enables Nvidia power management and blacklists conflicting modules
 
-nvidia is blacklisted because we enable it on boot time with the service "asusbootboot.service" depending on what Power mode is used.
-
-```
-etc/modprobe.d/nvidia.conf
-```
-This sets the power optimizations of the later Nvidia drivers so when the Nvidia is enabled it consumes less power in idle mode (~ 5 watts on an 2060 RTX).
-
-
-```
-etc/modules-load.d/acpi_call.conf
-```
-This loads the acpi_call kernel module (it didn't load automatically earlier so I put this in place just in case).
 
 ```
 etc/systemd/system/asusboot.service
@@ -132,7 +119,8 @@ calls /usr/sbin/asus_gpu_switch
 ```
 etc/tlp.conf
 ```
-marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand" as I've read that this is the only mode supported by Ryzen CPUs
+marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand" on AC and "powersave" on BAT.
+Also max CPU frequency on BAT is limited to 1,7GHz.
 
 ```
 usr/sbin/asus_boot
@@ -165,11 +153,3 @@ Just click the AMD or Nvidia icon in the top bar of GNOME-Shell, type your passw
 usr/share/pulseaudio/alsa-mixer/paths
 ```
 The currently needed adjustments for pulseaudio so volume control for the speakers works [see more at asus-linux.org](https://asus-linux.org/wiki/g14-and-g15/hardware/audio/)
-
-```
-usr/share/acpi_call-1.10
-```
-This is the Kernel module acpi_call needed to power down the Nvidia and to control the fans manually via asusctl.
-I prepared this folder and adjusted the dkms.conf in it so the compilation works (didn't work for me from the original repo).
-
---
