@@ -1,7 +1,6 @@
 [Unit]
 Description=ASUS G14 GPU boot script...
 Before=graphical.target
-After=suspend.target
 
 [Service]
 User=root
@@ -10,4 +9,3 @@ ExecStart=/usr/sbin/asus_gpu_boot
 
 [Install]
 WantedBy=graphical.target
-WantedBy=suspend.target

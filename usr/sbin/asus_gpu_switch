@@ -14,10 +14,7 @@ if [[ $GPUFILEPRESENT == false ]]; then
   echo "set to Nvidia mode flag and restart GDM"
   systemctl stop gdm
   echo -n "0000:01:00.0" > /sys/bus/pci/drivers/nvidia/bind
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.0/power/control
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.1/power/control
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.2/power/control
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.3/power/control
+  cp /etc/asusd/90-nvidia.conf /etc/X11/xorg.conf.d/90-nvidia.conf
   touch /etc/asus_nvidia
   asusctl -p normal
   systemctl restart gdm.service
@@ -25,10 +22,7 @@ else
   echo "deactivating nvidia"
   systemctl stop gdm
   echo -n "0000:01:00.0" > /sys/bus/pci/drivers/nvidia/unbind
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.0/power/control
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.1/power/control
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.2/power/control
-#  echo auto > /sys/bus/pci/devices/0000\:01\:00.3/power/control
+  rm /etc/X11/xorg.conf.d/90-nvidia.conf
   rm /etc/asus_nvidia
   asusctl -p silent
   systemctl restart gdm.service

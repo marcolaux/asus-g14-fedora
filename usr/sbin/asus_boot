@@ -4,14 +4,9 @@ echo "re-initializing touchpad"
 rmmod i2c_hid
 modprobe i2c_hid
 
-echo "auto power control to nvidia"
-echo auto > /sys/bus/pci/devices/0000\:01\:00.0/power/control
-echo auto > /sys/bus/pci/devices/0000\:01\:00.1/power/control
-echo auto > /sys/bus/pci/devices/0000\:01\:00.2/power/control
-echo auto > /sys/bus/pci/devices/0000\:01\:00.3/power/control
-
 echo '1500' > '/proc/sys/vm/dirty_writeback_centisecs'
 echo 'auto' > '/sys/bus/usb/devices/3-3/power/control'
 echo 'auto' > '/sys/bus/usb/devices/3-4/power/control'
 echo 'auto' > '/sys/bus/pci/devices/0000:05:00.0/ata1/power/control'
 echo 'auto' > '/sys/bus/pci/devices/0000:05:00.1/ata2/power/control'
+echo 'auto' > '/sys/bus/pci/devices/0000:00:01.1/power/control'

@@ -1,0 +1,6 @@
+[tlp]
+name=tlp
+failovermethod=priority
+baseurl=https://repo.linrunner.de/fedora/tlp/repos/releases/$releasever/$basearch/os
+enabled=1
+gpgcheck=0

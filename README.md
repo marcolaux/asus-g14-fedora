@@ -32,44 +32,7 @@ dnf install tlp tlp-rdw
 
 **3. Reboot**
 
-**4. Add asus-linux.org repo and install some packages**
-
-4.1 Add the asus-linux.org repo ([Instructions from asus-linux.org](https://asus-linux.org/wiki/keyboard-leds-anime/))
-
-Create the file
-
-| /etc/yum.repos.d/asus.repo
-
-with the following content
-
-```bash
-[asus]
-name=asus
-failovermethod=priority
-baseurl=https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_32/
-enabled=1
-gpgcheck=0
-```
-
-4.2 Update the repos and install some packages
-```bash
-dnf update
-dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi
-dkms build acpi_call -v 1.1.0
-dkms install acpi_call -v 1.1.0
-```
-
-> akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
-
-> asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi installs the currently necesary Kernel modules from asus-linux.org to get the function keys and custom fan control working
-
-> kernel-devel is necesarry for the dynamic kernel modules to compile
-
-> building and installing the acpi_call modules from this repo is needed to make the custom fan control working
-
->    ~~it's also used by custom scripts to disable the Nvidia GPU (more on that later)~~
-
-**5. copy all the files to the appropriate directories**
+**4. copy all the files to the appropriate directories**
 
 ```bash
 git clone https://github.com/hyphone/asus-g14-fedora.git
@@ -90,6 +53,22 @@ chmod +x /usr/sbin/asus_gpu_switch
 
 > we make the scripts in /usr/sbin/asus... executable
 
+**5. Update the repos and install some packages**
+```bash
+dnf update
+dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi akmod-acpi_call
+```
+
+> akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
+
+> asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi installs the currently necesary Kernel modules from asus-linux.org to get the function keys and custom fan control working
+
+> kernel-devel is necesarry for the dynamic kernel modules to compile
+
+> acpi_call modules from the tlp repo is needed to make the custom fan control working
+
+>    ~~it's also used by custom scripts to disable the Nvidia GPU (more on that later)~~
+
 **6. Enable the custom services**
 
 ```bash
@@ -103,7 +82,7 @@ systemctl enable asusgpuboot.service
 
 **5. Reboot**
 
-**6. You can switch AMD / Nvidia on demand via the gnome extension or with "sudo asus_gpu_switch"**
+**6. You can switch AMD / Nvidia on demand via the gnome extension or with "sudo systemctl start asusgpuswitch"**
 
 ---
 
