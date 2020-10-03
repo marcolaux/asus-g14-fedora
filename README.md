@@ -6,6 +6,9 @@ In 216 some things about how the dGPU works changed. Now no acpi_call or bbswitc
 We can now just unbind it and set the power control for the Nvidia to "auto".
 GPU switching without restarting is still possible. With the service here it get's unbinded to have AMD only mode with power saving or for hybrid mode it get's binded.
 
+**but be aware** that for some reason some processes can power the Nvidia up. I'm not sure what could cause this but for example when in AMD mode and starting the [Plex AppImage](https://knapsu.eu/plex/) (this is not the case with the Flatpak version, though) the Nvidia suddenly wakes up and consumes a lot of power (~30W). The power control is still set to auto and the Nvidia is still not binded to the Nvidia driver but still consumes power. I haven't noticed other processes causing this behaviour.
+If you have an application that does that and you need battery life while using this process I suggest not using the switching process here and using asusctl for switching the GPU (that needs a restart to switch between integrated and on-demand/hybrid/nvidia).
+
 ---
 
 This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 32.
