@@ -10,8 +10,12 @@ else
   GPUPROFILE="AMD"
 fi
 
-echo "Current profile is set to $GPUPROFILE GPU. Do you want to switch? (y/n)"
-read response
+if [ $1 == "-y" ] ;then
+  response="Y"
+else
+  echo "Current profile is set to $GPUPROFILE GPU. Do you want to switch? (y/N)"
+  read response
+fi
 
 if [ "$response" != "${response#[Yy]}" ] ;then
   if [[ $GPUFILEPRESENT == false ]]; then
