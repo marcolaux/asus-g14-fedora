@@ -13,10 +13,10 @@ fi
 if [ $GPUFILEPRESENT == true ]; then
   echo "Nvidia selected, choosing power profile normal"
   cp /etc/asusd/90-nvidia.conf /etc/X11/xorg.conf.d/90-nvidia.conf
-  asusctl -p normal
+  asusctl profile normal
 else
   echo "AMD mode selected, unbinding nvidia and setting power profile to silent"
   rm /etc/X11/xorg.conf.d/90-nvidia.conf
   echo -n "0000:01:00.0" > /sys/bus/pci/drivers/nvidia/unbind
-  asusctl -p silent
+  asusctl profile silent
 fi

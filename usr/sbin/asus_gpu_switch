@@ -24,7 +24,7 @@ if [ "$response" != "${response#[Yy]}" ] ;then
     echo -n "0000:01:00.0" > /sys/bus/pci/drivers/nvidia/bind
     cp /etc/asusd/90-nvidia.conf /etc/X11/xorg.conf.d/90-nvidia.conf
     touch /etc/asus_nvidia
-    asusctl -p normal
+    asusctl profile normal
     systemctl restart gdm.service
   else
     echo "deactivating nvidia"
@@ -32,7 +32,7 @@ if [ "$response" != "${response#[Yy]}" ] ;then
     echo -n "0000:01:00.0" > /sys/bus/pci/drivers/nvidia/unbind
     rm /etc/X11/xorg.conf.d/90-nvidia.conf
     rm /etc/asus_nvidia
-    asusctl -p silent
+    asusctl profile silent
     systemctl restart gdm.service
   fi
 fi
