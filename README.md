@@ -27,8 +27,7 @@ So let's go through this (I it works seemless in this order as I haven't done a 
 **2. Boot to your installation and update everything**
 
 ```bash
-dnf update
-dnf install tlp tlp-rdw
+dnf update && dnf install tlp tlp-rdw
 ```
 
 > tlp is used for automatic power management for some hardware components (so you don't have to powertop --auto-tune)
@@ -38,13 +37,8 @@ dnf install tlp tlp-rdw
 **4. copy all the files to the appropriate directories**
 
 ```bash
-git clone https://github.com/russiansmack/asus-g14-fedora.git
-cd asus-g14-fedora
-cp -R etc/* /etc/
-cp -R usr/* /usr/
-chmod +x /usr/sbin/asus_boot
-chmod +x /usr/sbin/asus_gpu_boot
-chmod +x /usr/sbin/asus_gpu_switch
+git clone https://github.com/russiansmack/asus-g14-fedora.git && cd asus-g14-fedora
+cp -R etc/* /etc/ && cp -R usr/* /usr/ && chmod +x /usr/sbin/asus_boot && chmod +x /usr/sbin/asus_gpu_boot && chmod +x /usr/sbin/asus_gpu_switch
 ```
 > we clone this repo
 
@@ -58,8 +52,7 @@ chmod +x /usr/sbin/asus_gpu_switch
 
 **5. Update the repos and install some packages**
 ```bash
-dnf update
-dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi akmod-acpi_call
+dnf update && dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi akmod-acpi_call
 ```
 
 > akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
@@ -75,8 +68,7 @@ dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms
 **6. Enable the custom services**
 
 ```bash
-systemctl enable asusboot.service
-systemctl enable asusgpuboot.service
+systemctl enable asusboot.service && systemctl enable asusgpuboot.service
 ```
 
 > asusboot.service removes and adds again the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
