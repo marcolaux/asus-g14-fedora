@@ -1,4 +1,4 @@
-# Fedora 32 Setup with an ASUS Zephyrus G14 GA401IV
+# Fedora 33 Setup with an ASUS Zephyrus G14 GA401IV
 
 **updated for BIOS 216**
 
@@ -22,7 +22,7 @@ So let's go through this (I it works seemless in this order as I haven't done a 
 
 ## Installation process
 
-**1. Install Fedora 32**
+**1. Install Fedora 33**
 
 **2. Boot to your installation and update everything**
 
