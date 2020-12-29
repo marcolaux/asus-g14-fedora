@@ -38,7 +38,7 @@ dnf install tlp tlp-rdw
 **4. copy all the files to the appropriate directories**
 
 ```bash
-git clone https://github.com/hyphone/asus-g14-fedora.git
+git clone https://github.com/russiansmack/asus-g14-fedora.git
 cd asus-g14-fedora
 cp -R etc/* /etc/
 cp -R usr/* /usr/
