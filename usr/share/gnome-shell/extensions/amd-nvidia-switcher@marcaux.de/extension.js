@@ -71,8 +71,8 @@ indicator.prototype = {
         this.button = new St.Bin({ style_class: 'panel-button',
                           reactive: true,
                           can_focus: true,
-                          x_fill: true,
-                          y_fill: true,
+                          x_expand: true,
+                          y_expand: true,
                           track_hover: true });
         this.button.set_child(this._icons[0]);
 

@@ -1,7 +1,0 @@
-[Unit]
-Description=ASUS G14 GPU switch script...
-
-[Service]
-User=root
-Type=simple
-ExecStart=/usr/sbin/asus_gpu_switch -y

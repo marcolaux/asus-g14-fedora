@@ -1,5 +1,7 @@
 # Fedora 33 Setup with an ASUS Zephyrus G14 GA401IV
 
+**DISCLAIMER: turn off Secure Boot - otherwise unsigned dkms modules will not work aka Keyboard binds and nvidia drivers will not work**
+
 **updated for BIOS 216**
 
 In 216 some things about how the dGPU works changed. Now no acpi_call or bbswitch is needed to power the Nvidia down.
@@ -74,6 +76,12 @@ systemctl enable asusboot.service && systemctl enable asusgpuboot.service
 > asusboot.service removes and adds again the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
 > asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand). This service gets called on boot.
+
+**7. Enable Asus Notifier about fan modes etc**
+```bash
+systemctl --user enable asus-notify.service
+systemctl --user start asus-notify.service
+```
 
 **5. Reboot**
 
