@@ -24,7 +24,8 @@ dnf update && dnf install tlp tlp-rdw
 
 ```bash
 git clone https://github.com/russiansmack/asus-g14-fedora.git && cd asus-g14-fedora
-/bin/cp -fR etc/* /etc/ && /bin/cp -fR usr/* /usr/ && chmod +x /usr/sbin/asus_boot && chmod +x /usr/sbin/asus_gpu_boot && chmod +x /usr/sbin/asus_gpu_switch
+sudo su
+/bin/cp -fR etc/* /etc/ && /bin/cp -fR usr/* /usr/ && chmod +x /usr/sbin/asus_boot
 ```
 > we clone this repo
 
