@@ -63,6 +63,10 @@ systemctl enable asusboot.service && systemctl --user enable asus-notify.service
 
 **8. You can switch AMD / Nvidia on demand with asusctl look at "asusctl --help"**
 
+**9. Add missing Page UP/DOWN/HOME/END buttons into Gnome**
+```
+dconf load / < custom-shortcuts.conf
+```
 ---
 
 ## What's in here...
