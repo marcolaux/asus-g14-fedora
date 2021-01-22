@@ -1,6 +1,6 @@
 [asus]
 name=asus
 failovermethod=priority
-baseurl=https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_33/
+baseurl=https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_Rawhide/
 enabled=1
 gpgcheck=0
