@@ -65,7 +65,8 @@ systemctl enable asusboot.service && systemctl --user enable asus-notify.service
 
 **9. Add missing Page UP/DOWN/HOME/END buttons into Gnome**
 ```
-dconf load / < custom-shortcuts.conf
+sudo systemd-hwdb update
+sudo udevadm trigger
 ```
 ---
 
