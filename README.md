@@ -108,7 +108,3 @@ usr/sbin/asus_boot
 ```
 called by asusboot.service, gets called on boot / resume and removes / adds the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
-```
-usr/share/pulseaudio/alsa-mixer/paths
-```
-The currently needed adjustments for pulseaudio so volume control for the speakers works [see more at asus-linux.org](https://asus-linux.org/wiki/g14-and-g15/hardware/audio/)
