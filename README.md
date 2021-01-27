@@ -69,7 +69,7 @@ sudo systemd-hwdb update
 sudo udevadm trigger
 ```
 
-**10. Bonus: Install extension to show current status of gfx and profile**
+**10. Bonus: [doesn't work that well :(] Install extension to show current status of gfx and profile**
 ```
 git clone https://gitlab.com/asus-linux/asus-nb-gex.git /tmp/asus-nb-gex && cd /tmp/asus-nb-gex
 make all && make install && sudo make install_icons && sudo make enable && make restart-shell 
