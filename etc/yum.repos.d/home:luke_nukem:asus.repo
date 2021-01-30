@@ -1,0 +1,7 @@
+[home_luke_nukem_asus]
+name=home:luke_nukem:asus (Fedora_33)
+type=rpm-md
+baseurl=https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_33/
+gpgcheck=1
+gpgkey=https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_33/repodata/repomd.xml.key
+enabled=1

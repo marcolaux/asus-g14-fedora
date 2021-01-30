@@ -5,7 +5,7 @@ Before=graphical.target
 [Service]
 User=root
 Type=simple
-ExecStart=/usr/sbin/asus_boot
+ExecStart=/usr/sbin/asusboot
 
 [Install]
 WantedBy=graphical.target

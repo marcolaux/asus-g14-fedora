@@ -1,0 +1,86 @@
+/* panel icons */
+.panel-icon {
+    background-size: 24px;
+    height: 100%;
+    width: 40px;
+}
+
+.panel-icon.reboot,
+.panel-icon.restartx{
+    background-image: url("icons/scalable/reboot.svg");
+}
+
+.panel-icon.red {
+    background-image: url("icons/64x64/asus-nb-gex-red.png");
+}
+.panel-icon.orange {
+    background-image: url("icons/64x64/asus-nb-gex-orange.png");
+}
+.panel-icon.yellow {
+    background-image: url("icons/64x64/asus-nb-gex-yellow.png");
+}
+.panel-icon.green {
+    background-image: url("icons/64x64/asus-nb-gex-green.png");
+}
+.panel-icon.blue {
+    background-image: url("icons/64x64/asus-nb-gex-blue.png");
+}
+.panel-icon.white {
+    background-image: url("icons/64x64/asus-nb-gex-white.png");
+}
+
+/* notification icons */
+.notification-icon {
+    background-size: contain;
+    height: 64px;
+    width: 64px;
+}
+.notification-icon.red {
+    background-image: url("icons/64x64/asus-nb-gex-red.png");
+}
+.notification-icon.orange {
+    background-image: url("icons/64x64/asus-nb-gex-orange.png");
+}
+.notification-icon.yellow {
+    background-image: url("icons/64x64/asus-nb-gex-yellow.png");
+}
+.notification-icon.green {
+    background-image: url("icons/64x64/asus-nb-gex-green.png");
+}
+.notification-icon.blue {
+    background-image: url("icons/64x64/asus-nb-gex-blue.png");
+}
+.notification-icon.white {
+    background-image: url("icons/64x64/asus-nb-gex-white.png");
+}
+
+.headline{
+    margin-bottom: 10px;
+}
+.headline-label{
+    font-weight: bold;
+    text-align: center;
+}
+
+/* gfx-mode icons */
+/* currently icons are only used for fan modes, right? */
+.gfx-mode,
+.fan-mode {
+    background-size: contain;
+    background-position: 15px 0;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+}
+.fan-mode.silent {
+    background-image: url("icons/128x128/asus-nb-gex-green.png");
+}
+.fan-mode.normal {
+    background-image: url("icons/128x128/asus-nb-gex-yellow.png");
+}
+.fan-mode.boost {
+    background-image: url("icons/128x128/asus-nb-gex-red.png");
+}
+
+.active{
+    /* background-color: #5C804B; */
+}

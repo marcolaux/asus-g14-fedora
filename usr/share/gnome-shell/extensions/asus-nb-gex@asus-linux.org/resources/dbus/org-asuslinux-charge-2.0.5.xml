@@ -1,0 +1,14 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/org/asuslinux/Charge">
+  <interface name="org.asuslinux.Daemon">
+    <method name="SetLimit">
+      <arg name="limit" type="y" direction="in"/>
+    </method>
+    <method name="Limit">
+      <arg type="n" direction="out"/>
+    </method>
+    <signal name="NotifyCharge">
+      <arg name="limit" type="y"/>
+    </signal>
+  </interface>
+</node>

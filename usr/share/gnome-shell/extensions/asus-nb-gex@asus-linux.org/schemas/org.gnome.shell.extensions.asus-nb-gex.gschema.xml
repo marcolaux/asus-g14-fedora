@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+<schema id="org.gnome.shell.extensions.asus-nb-gex" path="/org/gnome/shell/extensions/asus-nb-gex/" >
+  <key type="i" name="test-integer">
+    <default>100</default>
+    <summary>test integer</summary>
+    <description>test integer description</description>
+  </key>
+  <key type="s" name="asus-nb-gex-ttp">
+    <default>"/sys/devices/platform/asus-nb-wmi/throttle_thermal_policy"</default>
+    <summary>thermal throttle policy</summary>
+    <description>file(sys-device) location of thermal throttle policy</description>
+  </key>
+</schema>
+</schemalist>
