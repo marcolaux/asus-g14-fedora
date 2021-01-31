@@ -16,7 +16,8 @@ dnf install tlp tlp-rdw brightnessctl
 ```
 
 > tlp is used for automatic power management for some hardware components (so you don't have to powertop --auto-tune)
-> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending.
+
+> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
 
 **3. Reboot**
 
@@ -43,6 +44,7 @@ udevadm trigger
 > we make the script /usr/sbin/asusboot and /usr/lib/systemd/system-sleep/asus_keyboard_backlight executable
 
 > mod the keyboard that page up / down is mapped to fn+up/down
+
 > you can use brightnessctl -d asus::kbd_backlight s +1 and brightnessctl -d asus::kbd_backlight s 1- and map this to a key of your choice in your DE
 
 **5. Update the repos and install some packages**
