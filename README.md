@@ -29,6 +29,8 @@ cp -R etc/* /etc/
 cp -R usr/* /usr/
 chmod +x /usr/sbin/asusboot
 chmod a+x /usr/lib/systemd/system-sleep/asus_keyboard_backlight
+systemd-hwdb update
+udevadm trigger
 ```
 > we clone this repo
 
@@ -38,7 +40,10 @@ chmod a+x /usr/lib/systemd/system-sleep/asus_keyboard_backlight
 
 > we copy everything in this repo of usr to /usr/
 
-> we make the script /usr/sbin/asusboot executable
+> we make the script /usr/sbin/asusboot and /usr/lib/systemd/system-sleep/asus_keyboard_backlight executable
+
+> mod the keyboard that page up / down is mapped to fn+up/down
+> you can use brightnessctl -d asus::kbd_backlight s +1 and brightnessctl -d asus::kbd_backlight s 1- and map this to a key of your choice in your DE
 
 **5. Update the repos and install some packages**
 ```bash
