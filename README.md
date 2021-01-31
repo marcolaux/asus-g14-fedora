@@ -12,10 +12,11 @@ This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 
 
 ```bash
 dnf update
-dnf install tlp tlp-rdw
+dnf install tlp tlp-rdw brightnessctl
 ```
 
 > tlp is used for automatic power management for some hardware components (so you don't have to powertop --auto-tune)
+> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending.
 
 **3. Reboot**
 
@@ -27,6 +28,7 @@ cd asus-g14-fedora
 cp -R etc/* /etc/
 cp -R usr/* /usr/
 chmod +x /usr/sbin/asusboot
+chmod a+x /usr/lib/systemd/system-sleep/asus_keyboard_backlight
 ```
 > we clone this repo
 
@@ -61,8 +63,6 @@ dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms
 
 > acpi_call modules from the tlp repo is needed to make the custom fan control working
 
->    ~~it's also used by custom scripts to disable the Nvidia GPU (more on that later)~~
-
 **6. Enable the custom services**
 
 ```bash
@@ -70,8 +70,6 @@ systemctl enable asusboot.service
 ```
 
 > asusboot.service removes and adds again the i2c_hid modules because on Fedora 33 the touchpad sometimes is not initialized correctly on boot. This fixes this.
-
-> asusgpuboot.services sets the power state that was previously selected (AMD only or AMD+Nvidia on demand). This service gets called on boot.
 
 **5. Reboot**
 
