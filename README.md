@@ -103,7 +103,7 @@ systemctl enable asusboot.service
 
 > This extension uses asusctl to switch modes via asusctl's DBUS interface. You can either use the extension or asusctl directly if you don't use GNOME Shell.
 
-> If you don't have GNOME Shell but a desktop environment with a system tray I suggest you use this very handy application: !(asusctltray)[https://github.com/Baldomo/asusctltray/]
+> If you don't have GNOME Shell but a desktop environment with a system tray I suggest you use this very handy application: ![asusctltray](https://github.com/Baldomo/asusctltray/)
 
 ### asusctl
 
