@@ -101,6 +101,10 @@ systemctl enable asusboot.service
 
 > **silent** is good for the **integrated** graphics mode. for **every other** graphics mode I recommend **normal** as the case would heat up too much on silent.
 
+> This extension uses asusctl to switch modes via asusctl's DBUS interface. You can either use the extension or asusctl directly if you don't use GNOME Shell.
+
+> If you don't have GNOME Shell but a desktop environment with a system tray I suggest you use this very handy application: !(asusctltray)[https://github.com/Baldomo/asusctltray/]
+
 ### asusctl
 
 ![asusctl](https://gitlab.com/asus-linux/asus-nb-ctrl) by Luke Jones (and his Kernel modules) are the key to this all. Without the efford of the community we wouldn't have such handy tools to control this machine. asusctl is used here to do most of the things, like graphics switching via the GNOME Shell extension or setting the ROG profiles.
@@ -143,8 +147,8 @@ removes and adds again the i2c_hid modules because on Fedora 32 the touchpad som
 ```
 etc/tlp.conf
 ```
-marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand" on AC and "powersave" on BAT.
-Also max CPU frequency on BAT is limited to 1,7GHz.
+marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand".
+I haven't set it to "powersave" as the CPU then does not clock higher than the base clock for me (Kernel 5.10). ondemand also seems pretty battery friendly, especially with the **silent** profile when the CPU Boost is disabled.
 
 ```
 usr/sbin/asusboot
