@@ -101,6 +101,27 @@ systemctl enable asusboot.service
 
 > **silent** is good for the **integrated** graphics mode. for **every other** graphics mode I recommend **normal** as the case would heat up too much on silent.
 
+### asusctl
+
+![asusctl](https://gitlab.com/asus-linux/asus-nb-ctrl) by Luke Jones (and his Kernel modules) are the key to this all. Without the efford of the community we wouldn't have such handy tools to control this machine. asusctl is used here to do most of the things, like graphics switching via the GNOME Shell extension or setting the ROG profiles.
+
+You can use asusctl to switch your profile like so (use _integrated_, _hybrid_, _compute_ or _nvidia_ instead of {profile}):
+```
+asusctl graphics -m {profile}
+```
+
+You can also change the ROG profile via asusctl (use _silent_, _normal_ or _boost_ instead of {profile}):
+```
+asusctl profile {profile}
+```
+
+for more options have a look at this command:
+```
+asusctl --help
+```
+
+***
+
 ```
 etc/asusd/asusd.conf
 ```
