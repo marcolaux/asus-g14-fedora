@@ -86,17 +86,18 @@ systemctl enable asusboot.service
 ![](https://gitlab.com/asus-linux/asus-nb-gex/uploads/e24a7ac93307540c1e34bec335e17a8c/image.png)
 
 **Graphics Mode**
-integrated    only use integrated AMD GPU while the NVIDIA is completely turned off
-hybrid        use the integrated AMD GPU as the main GPU. The NVIDIA can be used for offloading *1
-compute       use the integrated AMD GPU as the main GPU. The NVIDIA can be used for CUDA / OpenCL but not for offloading graphics.
-nvidia        use the dedicated NVIDIA GPU as the main GPU.
+
+- integrated    only use integrated AMD GPU while the NVIDIA is completely turned off
+- hybrid        use the integrated AMD GPU as the main GPU. The NVIDIA can be used for offloading *1
+- compute       use the integrated AMD GPU as the main GPU. The NVIDIA can be used for CUDA / OpenCL but not for offloading graphics.
+- nvidia        use the dedicated NVIDIA GPU as the main GPU.
 
 *1 to offload a graphics application to your NVIDIA you can use GNOME Shells feature via right click on an application icon and use **run with dedicated graphics adapter**
 
 **Profile**
-Boost         high fan RPM, Ryzen Boost enabled
-Normal        silent fan until 49°C CPU temperature, spins up at higher temps, Ryzen Boost enabled
-Silent        silent fan until 69°C CPU temperature, spins up at higher temps, Ryzen Boost disabled
+- Boost         high fan RPM, Ryzen Boost enabled
+- Normal        silent fan until 49°C CPU temperature, spins up at higher temps, Ryzen Boost enabled
+- Silent        silent fan until 69°C CPU temperature, spins up at higher temps, Ryzen Boost disabled
 
 > **silent** is good for the **integrated** graphics mode. for **every other** graphics mode I recommend **normal** as the case would heat up too much on silent.
 
