@@ -20,6 +20,9 @@ dnf install tlp tlp-rdw brightnessctl
 > brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
 
 **3. Reboot**
+```bash
+reboot
+```
 
 **4. copy all the files to the appropriate directories**
 
@@ -43,24 +46,16 @@ udevadm trigger
 
 > we make the script /usr/sbin/asusboot and /usr/lib/systemd/system-sleep/asus_keyboard_backlight executable
 
-> mod the keyboard that page up / down is mapped to fn+up/down
+> mod the keyboard that **page up / down** is mapped to **fn+up/down** while **home (pos1) / end** is mapped to **fn+left/right**
 
 > you can use brightnessctl -d asus::kbd_backlight s +1 and brightnessctl -d asus::kbd_backlight s 1- and map this to a key of your choice in your DE
 
-**5. Update the repos and install some packages**
+**5 install some packages**
 ```bash
 dnf update
-```
-
-**5.1 reboot to make sure you are on the newest Kernel**
-```bash
-reboot
-```
-
-**5.2 install some packages**
-```bash
 dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog dkms-asus-rog-nb-wmi akmod-acpi_call
 ```
+> update the the packages and check the new repos (asus-linux.org and tlp) for new packages
 
 > akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
 
@@ -80,11 +75,30 @@ systemctl enable asusboot.service
 
 **5. Reboot**
 
-**6. You can switch AMD / Nvidia on demand via the gnome extension or with "asusctl graphics -m (graphics mode)"**
+**6. You can switch your prefered graphics mode via the GNOME Shell extension "asus-nb-gex" or with "asusctl graphics -m (graphics mode)"**
 
 ---
 
 ## What's in here...
+
+### Asus-nb-gex GNOME Shell extension (modified)
+
+![](https://gitlab.com/asus-linux/asus-nb-gex/uploads/e24a7ac93307540c1e34bec335e17a8c/image.png)
+
+**Graphics Mode**
+integrated    only use integrated AMD GPU while the NVIDIA is completely turned off
+hybrid        use the integrated AMD GPU as the main GPU. The NVIDIA can be used for offloading *1
+compute       use the integrated AMD GPU as the main GPU. The NVIDIA can be used for CUDA / OpenCL but not for offloading graphics.
+nvidia        use the dedicated NVIDIA GPU as the main GPU.
+
+*1 to offload a graphics application to your NVIDIA you can use GNOME Shells feature via right click on an application icon and use **run with dedicated graphics adapter**
+
+**Profile**
+Boost         high fan RPM, Ryzen Boost enabled
+Normal        silent fan until 49°C CPU temperature, spins up at higher temps, Ryzen Boost enabled
+Silent        silent fan until 69°C CPU temperature, spins up at higher temps, Ryzen Boost disabled
+
+> **silent** is good for the **integrated** graphics mode. for **every other** graphics mode I recommend **normal** as the case would heat up too much on silent.
 
 ```
 etc/asusd/asusd.conf
