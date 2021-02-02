@@ -101,7 +101,7 @@ systemctl enable asusboot.service
 
 **usually a reboot or a restart of Xorg is required to apply the changes. There will be a notification with a call to action to give you a hint what action is required.**
 ![](https://user-images.githubusercontent.com/6410852/106669281-b8d96500-65ab-11eb-9e1e-adbd0126587d.png)
-_**please note** that the message sometimes is not correct as asusctl currently not always returns the right necessary action. I recommend to always just reboot for now._
+_**please note** that the message sometimes is not correct when you switch multiple times without doing the appropriate action. So save your work and do as the asusctl and this extension tells you :)_
 
 > **silent** is good for the **integrated** graphics mode. for **every other** graphics mode I recommend **normal** as the case would heat up too much on silent.
 
