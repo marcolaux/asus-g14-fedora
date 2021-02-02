@@ -6,6 +6,7 @@ const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const St = imports.gi.St;
 const MessageTray = imports.ui.messageTray;
+const GLib = imports.gi.GLib;
 var Title = 'AsusNB Control';
 var Button = class Button {
     constructor() {
@@ -32,11 +33,25 @@ var Button = class Button {
     }
 }
 var Actions = class Actions {
+    static spawnCommandLine(command) {
+        try {
+            GLib.spawn_command_line_async(command, null);
+        }
+        catch (e) {
+            Log.error(e);
+        }
+    }
     static notify(msg = Title, details, icon, panelIcon = "") {
         let source = new MessageTray.Source(msg, icon);
         Main.messageTray.add(source);
         let notification = new MessageTray.Notification(source, msg, details);
         notification.setTransient(true);
+        if (panelIcon == 'reboot') {
+            notification.addAction('Reboot Now!', () => { this.spawnCommandLine('systemctl reboot'); });
+        }
+        else if (panelIcon == 'restartx') {
+            notification.addAction('Restart Display Manager Now!', () => { this.spawnCommandLine('systemctl restart display-manager'); });
+        }
         source.showNotification(notification);
         if (panelIcon !== "")
             Main.panel.statusArea['asus-nb-gex.panel'].style_class = 'panel-icon ' + panelIcon;

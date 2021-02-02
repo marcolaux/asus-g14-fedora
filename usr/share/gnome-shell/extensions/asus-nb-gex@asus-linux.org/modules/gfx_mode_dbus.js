@@ -2,7 +2,6 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Log = Me.imports.modules.log;
 const Panel = Me.imports.modules.panel;
 const Resources = Me.imports.modules.resources;
-const ProfileBase = Me.imports.modules.profile;
 const Gio = imports.gi.Gio;
 const Main = imports.ui.main;
 var GfxMode = class GfxMode {
@@ -18,7 +17,8 @@ var GfxMode = class GfxMode {
     }
     setGfxMode(mode) {
         if (this.connected)
-            return `${this.asusLinuxProxy.SetVendorSync(mode)}`;
+            Log.info('setting ' + mode);
+        return `${this.asusLinuxProxy.SetVendorSync(mode)}`;
     }
     start() {
         Log.info(`Starting GfxMode DBus client...`);
@@ -44,9 +44,14 @@ var GfxMode = class GfxMode {
                 if (proxy_) {
                     Log.info(`[dbus${name_}]: The GfxMode changed, new GfxMode is ${value}`);
                     this.lastState = value;
-                    Panel.Actions.notify(Panel.Title, `The GfxMode changed, new GfxMode is ${value}`, value, (value == 'reboot' ? ProfileBase.ProfileColor[value] : ''));
+                    let msg = `The GfxMode changed, new GfxMode is ${value}`;
                     if (value == 'reboot') {
+                        msg = 'The GfxMode changed, please reboot to apply the changes.';
                     }
+                    else if (value == 'restartx') {
+                        msg = 'The GfxMode changed, please restart your display manager to apply the changes.';
+                    }
+                    Panel.Actions.notify(Panel.Title, msg, 'system-reboot-symbolic', value);
                     Main.panel.statusArea['asus-nb-gex.panel'].style_class = 'panel-icon ' + value;
                 }
             });

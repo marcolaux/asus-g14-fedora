@@ -84,3 +84,8 @@
 .active{
     /* background-color: #5C804B; */
 }
+
+.asusctl-modal-dialog{
+    padding: 30px;
+    font-size: 2em;
+}
