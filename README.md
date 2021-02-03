@@ -83,6 +83,9 @@ systemctl enable asusboot.service
 
 ### Asus-nb-gex GNOME Shell extension (modified)
 
+You can find the Gitlab repo of this extension with my modifications here (I keep the version in here up to date with the one in Gitlab): ![](https://gitlab.com/marcaux/asus-nb-gex)
+It is a modified version of this extension here: ![](https://gitlab.com/asus-linux/asus-nb-gex)
+
 ![](https://gitlab.com/asus-linux/asus-nb-gex/uploads/e24a7ac93307540c1e34bec335e17a8c/image.png)
 
 **Graphics Mode**
