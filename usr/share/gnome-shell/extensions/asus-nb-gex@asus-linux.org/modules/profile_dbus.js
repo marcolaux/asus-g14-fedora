@@ -20,7 +20,7 @@ var Profile = class Profile {
         if (this.connected) {
             Log.error(mode);
             try {
-                GLib.spawn_command_line_async(`asusctl profile ${mode}`, null);
+                GLib.spawn_command_line_async(`asusctl profile ${mode}`);
             }
             catch (e) {
                 Log.error(e);
@@ -46,23 +46,10 @@ var Profile = class Profile {
         }
     }
     updateProfile(curState) {
-        if (curState !== undefined && !isNaN(curState) && curState !== -1 && this.lastState !== curState) {
+        if (curState !== -1 && this.lastState !== curState) {
             let curActiveProfileName = ProfileBase.ProfileDescr[curState];
-            let menuItems = Main.panel.statusArea['asus-nb-gex.panel'].menu._getMenuItems();
-            menuItems.forEach((mi) => {
-                if (mi.style_class.includes('fan-mode')) {
-                    if (mi.style_class.includes(curActiveProfileName)) {
-                        mi.style_class = mi.style_class + ' active';
-                        mi.label.set_text(mi.label.text + '  🗸');
-                    }
-                    else if (mi.style_class.includes('active')) {
-                        mi.style_class = mi.style_class.split('active').join(' ');
-                        mi.label.set_text(mi.label.text.substr(0, mi.label.text.length - 3));
-                    }
-                }
-            });
-            Log.info(`[updateProfile]: The Profile changed, new Profile is ${curActiveProfileName}`);
             let message = ((this.lastState === -1) ? 'initial' : 'changed') + ' profile: ' + ProfileBase.ProfileDescr[curState];
+            Panel.Actions.updateMode('fan-mode', curActiveProfileName);
             if (this.lastState !== -1) {
                 Panel.Actions.notify(Panel.Title, message, ProfileBase.ProfileIcons[curState], ProfileBase.ProfileColor[curState]);
             }
@@ -80,7 +67,7 @@ var Profile = class Profile {
             this.connected = true;
             this.enabled = true;
             try {
-                this.sourceId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 10, this.poller.bind(this));
+                this.sourceId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1, this.poller.bind(this));
             }
             catch (e) {
                 Log.error(e);

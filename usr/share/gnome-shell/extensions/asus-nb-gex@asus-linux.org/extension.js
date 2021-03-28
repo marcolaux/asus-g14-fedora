@@ -37,24 +37,27 @@ var Extension = class Extension {
             });
         }
         if (this.gfxMode.connected) {
+            let iGPU = this.gfxMode.getIGPU();
             let menu = Main.panel.statusArea['asus-nb-gex.panel'].menu;
             let menuItems = menu._getMenuItems();
             menuItems.forEach((mi) => {
                 Log.info('menu item ' + mi.style_class);
                 if (mi.style_class.includes('gfx-mode') && mi.style_class.includes('none')) {
                     mi.destroy();
-                    let vendor = this.gfxMode.connector.asusLinuxProxy.VendorSync().toString().trim();
+                    let vendor = this.gfxMode.connector.getGfxMode();
+                    Log.info(`Current one is ${vendor}`);
                     let menuItems = {
-                        integrated: new PM.PopupMenuItem('integrated', { style_class: 'integrated gfx-mode' }),
-                        hybrid: new PM.PopupMenuItem('hybrid', { style_class: 'hybrid gfx-mode' }),
-                        compute: new PM.PopupMenuItem('compute', { style_class: 'compute gfx-mode' }),
-                        dedicated: new PM.PopupMenuItem('nvidia', { style_class: 'nvidia gfx-mode' }),
+                        1: new PM.PopupMenuItem('integrated', { style_class: 'integrated gfx-mode ' + iGPU }),
+                        2: new PM.PopupMenuItem('compute', { style_class: 'compute gfx-mode ' + iGPU }),
+                        3: new PM.PopupMenuItem('vfio', { style_class: 'vfio gfx-mode ' + iGPU }),
+                        4: new PM.PopupMenuItem('hybrid', { style_class: 'hybrid gfx-mode ' + iGPU }),
+                        0: new PM.PopupMenuItem('nvidia', { style_class: 'nvidia gfx-mode' })
                     };
                     let position = 1;
                     for (const item in menuItems) {
                         if (item == vendor) {
                             menuItems[item].style_class = menuItems[item].style_class + ' active';
-                            menuItems[item].label.set_text(menuItems[item].label.text + '  🗸');
+                            menuItems[item].label.set_text(menuItems[item].label.text + '  ✔');
                         }
                         menu.addMenuItem(menuItems[item], position);
                         menuItems[item].connect('activate', () => { this.gfxMode.connector.setGfxMode(item); });

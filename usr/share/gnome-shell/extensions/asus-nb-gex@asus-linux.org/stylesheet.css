@@ -1,12 +1,13 @@
 /* panel icons */
 .panel-icon {
     background-size: 24px;
-    height: 100%;
+    height: 40px;
     width: 40px;
 }
 
+.panel-icon.logout,
 .panel-icon.reboot,
-.panel-icon.restartx{
+.panel-icon.restartx {
     background-image: url("icons/scalable/reboot.svg");
 }
 
@@ -36,34 +37,32 @@
     width: 64px;
 }
 .notification-icon.red {
-    background-image: url("icons/64x64/asus-nb-gex-red.png");
+    background-image: url("icons/256x256/asus-nb-gex-red.png");
 }
 .notification-icon.orange {
-    background-image: url("icons/64x64/asus-nb-gex-orange.png");
+    background-image: url("icons/256x256/asus-nb-gex-orange.png");
 }
 .notification-icon.yellow {
-    background-image: url("icons/64x64/asus-nb-gex-yellow.png");
+    background-image: url("icons/256x256/asus-nb-gex-yellow.png");
 }
 .notification-icon.green {
-    background-image: url("icons/64x64/asus-nb-gex-green.png");
+    background-image: url("icons/256x256/asus-nb-gex-green.png");
 }
 .notification-icon.blue {
-    background-image: url("icons/64x64/asus-nb-gex-blue.png");
+    background-image: url("icons/256x256/asus-nb-gex-blue.png");
 }
 .notification-icon.white {
-    background-image: url("icons/64x64/asus-nb-gex-white.png");
+    background-image: url("icons/256x256/asus-nb-gex-white.png");
 }
 
-.headline{
+.headline {
     margin-bottom: 10px;
 }
-.headline-label{
+.headline-label {
     font-weight: bold;
     text-align: center;
 }
 
-/* gfx-mode icons */
-/* currently icons are only used for fan modes, right? */
 .gfx-mode,
 .fan-mode {
     background-size: contain;
@@ -71,6 +70,30 @@
     background-repeat: no-repeat;
     padding-left: 35px;
 }
+.gfx-mode{
+    background-size: 24px;
+    background-position: 24px 7px;
+}
+.gfx-mode.integrated.amd{
+    background-image: url("icons/scalable/gpu-amd.svg");
+}
+.gfx-mode.hybrid.amd,
+.gfx-mode.compute.amd,
+.gfx-mode.vfio.amd{
+    background-image: url("icons/scalable/gpu-amd-nvidia.svg");
+}
+.gfx-mode.integrated.intel{
+    background-image: url("icons/scalable/gpu-intel.svg");
+}
+.gfx-mode.hybrid.intel,
+.gfx-mode.compute.intel,
+.gfx-mode.vfio.intel{
+    background-image: url("icons/scalable/gpu-intel-nvidia.svg");
+}
+.gfx-mode.nvidia{
+    background-image: url("icons/scalable/gpu-nvidia.svg");
+}
+
 .fan-mode.silent {
     background-image: url("icons/128x128/asus-nb-gex-green.png");
 }
@@ -81,7 +104,7 @@
     background-image: url("icons/128x128/asus-nb-gex-red.png");
 }
 
-.active{
+.active {
     /* background-color: #5C804B; */
 }
 

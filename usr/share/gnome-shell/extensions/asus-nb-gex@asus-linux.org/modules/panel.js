@@ -35,35 +35,35 @@ var Button = class Button {
 var Actions = class Actions {
     static spawnCommandLine(command) {
         try {
-            GLib.spawn_command_line_async(command, null);
+            GLib.spawn_command_line_async(command);
         }
         catch (e) {
             Log.error(e);
         }
     }
-    static notify(msg = Title, details, icon, panelIcon = "") {
+    static notify(msg = Title, details, icon, panelIcon = "", action = "") {
         let source = new MessageTray.Source(msg, icon);
         Main.messageTray.add(source);
         let notification = new MessageTray.Notification(source, msg, details);
         notification.setTransient(true);
-        if (panelIcon == 'reboot') {
+        if (action == 'reboot') {
             notification.addAction('Reboot Now!', () => { this.spawnCommandLine('systemctl reboot'); });
         }
-        else if (panelIcon == 'restartx') {
-            notification.addAction('Restart Display Manager Now!', () => { this.spawnCommandLine('systemctl restart display-manager'); });
+        else if (action == 'logout') {
+            notification.addAction('Log Out Now!', () => { this.spawnCommandLine('gnome-session-quit'); });
         }
         source.showNotification(notification);
         if (panelIcon !== "")
             Main.panel.statusArea['asus-nb-gex.panel'].style_class = 'panel-icon ' + panelIcon;
     }
-    static updateGfxMode(vendor, power) {
-        Log.info(`(panel) new mode: ${vendor}:${power}`);
+    static updateMode(selector, vendor, value = '') {
+        Log.info(`(panel) new ${selector} mode: ${vendor}:${value}`);
         let menuItems = Main.panel.statusArea['asus-nb-gex.panel'].menu._getMenuItems();
         menuItems.forEach((mi) => {
-            if (mi.style_class.includes('gfx-mode')) {
+            if (mi.style_class.includes(selector)) {
                 if (mi.style_class.includes(vendor)) {
                     mi.style_class = mi.style_class + ' active';
-                    mi.label.set_text(mi.label.text + '  🗸');
+                    mi.label.set_text(mi.label.text + '  ✔');
                 }
                 else if (mi.style_class.includes('active')) {
                     mi.style_class = mi.style_class.split('active').join(' ');
