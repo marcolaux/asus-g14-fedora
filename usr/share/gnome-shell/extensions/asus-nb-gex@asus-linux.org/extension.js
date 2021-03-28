@@ -24,14 +24,17 @@ var Extension = class Extension {
                 Log.info('menu item ' + mi.style_class);
                 if (mi.style_class.includes('fan-mode') && mi.style_class.includes('none')) {
                     mi.destroy();
-                    let menuItems = {
-                        silent: new PM.PopupMenuItem('silent', { style_class: 'silent callmode-silent fan-mode' }),
-                        normal: new PM.PopupMenuItem('normal', { style_class: 'normal callmode-normal fan-mode' }),
-                        boost: new PM.PopupMenuItem('boost', { style_class: 'boost callmode-boost fan-mode' }),
-                    };
-                    for (const item in menuItems) {
-                        menu.addMenuItem(menuItems[item]);
-                        menuItems[item].connect('activate', () => { this.profile.connector.setProfile(item); });
+                    Log.info('profiles:');
+                    Log.info(this.profile.connector.profileDesc.toString());
+                    if (this.profile.connector.profileDesc.length > 0) {
+                        let menuItems = {};
+                        this.profile.connector.profileDesc.forEach((el) => {
+                            menuItems[el] = new PM.PopupMenuItem(el, { style_class: el + ' callmode-' + el + ' fan-mode' });
+                        });
+                        for (const item in menuItems) {
+                            menu.addMenuItem(menuItems[item]);
+                            menuItems[item].connect('activate', () => { this.profile.connector.setProfile(item); });
+                        }
                     }
                 }
             });

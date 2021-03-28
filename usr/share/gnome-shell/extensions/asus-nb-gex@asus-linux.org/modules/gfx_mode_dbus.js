@@ -20,9 +20,10 @@ var GfxMode = class GfxMode {
             return `${this.asusLinuxProxy.VendorSync()}`;
     }
     setGfxMode(mode) {
-        if (this.connected)
+        if (this.connected) {
             Log.info('setting ' + mode);
-        return this.asusLinuxProxy.SetVendorSync(mode);
+            return this.asusLinuxProxy.SetVendorSync(mode);
+        }
     }
     start() {
         Log.info(`Starting Graphics Mode DBus client...`);

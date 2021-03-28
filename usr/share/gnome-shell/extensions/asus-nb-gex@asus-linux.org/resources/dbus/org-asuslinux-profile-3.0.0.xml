@@ -7,11 +7,18 @@
     <method name="ActiveProfileName">
       <arg type="s" direction="out"/>
     </method>
-    <method name="Profile">
+    <method name="Profile"></method>
+    <method name="NextProfile">
       <arg type="s" direction="out"/>
+    </method>
+    <method name="ProfileNames">
+      <arg type="as" direction="out"/>
     </method>
     <method name="Profiles">
       <arg type="s" direction="out"/>
+    </method>
+    <method name="Remove">
+      <arg type="s" direction="in"/>
     </method>
     <signal name="NotifyProfile">
       <arg name="profile" type="s"/>
