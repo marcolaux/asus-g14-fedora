@@ -81,10 +81,11 @@ systemctl enable asusboot.service
 
 ## What's in here...
 
-### Asus-nb-gex GNOME Shell extension (modified)
+### Asus-nb-gex GNOME Shell extension (currently in development)
 
-You can find the Gitlab repo of this extension with my modifications here (I keep the version in here up to date with the one in Gitlab): ![https://gitlab.com/marcaux/asus-nb-gex](https://gitlab.com/marcaux/asus-nb-gex)
-It is a modified version of this extension here: ![https://gitlab.com/asus-linux/asus-nb-gex](https://gitlab.com/asus-linux/asus-nb-gex)
+The main repo for the Gnome Shell extension can be found here: ![https://gitlab.com/asus-linux/asus-nb-gex](https://gitlab.com/asus-linux/asus-nb-gex)
+It is currently still in development when we find the time. In this repo here you find the most current version that I also use:
+![https://gitlab.com/asus-linux/asus-nb-gex/-/tree/dev/1.0.0](dev/1.0.0).
 
 ![](https://gitlab.com/asus-linux/asus-nb-gex/uploads/e24a7ac93307540c1e34bec335e17a8c/image.png)
 
@@ -93,6 +94,7 @@ It is a modified version of this extension here: ![https://gitlab.com/asus-linux
 - _integrated_ - only use integrated AMD GPU while the NVIDIA is completely turned off
 - _hybrid_ - use the integrated AMD GPU as the main GPU. The NVIDIA can be used for offloading *1
 - _compute_ - use the integrated AMD GPU as the main GPU. The NVIDIA can be used for CUDA / OpenCL but not for offloading graphics.
+- _vfio_ - use the integrated AMD GPU as the main GPU. The NVIDIA can be used in combination with a VM for GPU passthrough.
 - _nvidia_ - use the dedicated NVIDIA GPU as the main GPU.
 
 *1 to offload a graphics application to your NVIDIA you can use GNOME Shells feature via right click on an application icon and use **run with dedicated graphics adapter**
