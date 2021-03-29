@@ -87,7 +87,7 @@ The main repo for the Gnome Shell extension can be found here: ![https://gitlab.
 It is currently still in development when we find the time. In this repo here you find the most current version that I also use:
 ![https://gitlab.com/asus-linux/asus-nb-gex/-/tree/dev/1.0.0](dev/1.0.0).
 
-![](https://gitlab.com/asus-linux/asus-nb-gex/uploads/e24a7ac93307540c1e34bec335e17a8c/image.png)
+![](https://raw.githubusercontent.com/hyphone/asus-g14-fedora/master/screenshot.png)
 
 **Graphics Mode**
 
