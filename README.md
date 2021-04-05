@@ -163,3 +163,9 @@ I haven't set it to "powersave" as the CPU then does not clock higher than the b
 usr/sbin/asusboot
 ```
 called by asusboot.service, gets called on boot and resets the i2c_hid modules because on Fedora 33 the touchpad sometimes is not initialized correctly on boot. This fixes this.
+
+```
+etc/modules-load.d/...
+```
+- acpi_call.conf makes sure the acpi_call module is loaded (when installed) to get custom fan control working
+- i2c-nvidia-gpu.conf makes sure that USB-C charging works
