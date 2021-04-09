@@ -168,4 +168,3 @@ called by asusboot.service, gets called on boot and resets the i2c_hid modules b
 etc/modules-load.d/...
 ```
 - acpi_call.conf makes sure the acpi_call module is loaded (when installed) to get custom fan control working
-- i2c-nvidia-gpu.conf makes sure that USB-C charging works
