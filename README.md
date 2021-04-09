@@ -53,13 +53,13 @@ udevadm trigger
 **5 install some packages**
 ```bash
 dnf update
-dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl dkms-hid-asus-rog akmod-acpi_call
+dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl akmod-acpi_call
 ```
 > update the the packages and check the new repos (asus-linux.org and tlp) for new packages
 
 > akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
 
-> asus-nb-ctrl dkms-hid-asus-rog installs the currently necesary Kernel modules from asus-linux.org to get the function keys working (dkms-asus-rog-nb-wmi is not required anymore)
+> asus-nb-ctrl installs the currently necesary Kernel modules from asus-linux.org to get the function keys working
 
 > kernel-devel is necesarry for the dynamic kernel modules to compile
 
