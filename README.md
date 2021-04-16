@@ -1,8 +1,10 @@
-# Fedora 33 Setup with an ASUS Zephyrus G14 GA401IV
+# Fedora 33 Setup with an ASUS Zephyrus G14 2020 and 2021 models
 
 ---
 
 This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 33 including a GNOME Shell extension to switch between GPUs and ROG profiles.
+
+This also should work with the 2021 models as the new custom kernel is in here.
 
 ## Installation process
 
@@ -31,7 +33,6 @@ git clone https://github.com/hyphone/asus-g14-fedora.git
 cd asus-g14-fedora
 cp -R etc/* /etc/
 cp -R usr/* /usr/
-chmod +x /usr/sbin/asusboot
 chmod a+x /usr/lib/systemd/system-sleep/asus_keyboard_backlight
 systemd-hwdb update
 udevadm trigger
@@ -54,6 +55,7 @@ udevadm trigger
 ```bash
 dnf update
 dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl akmod-acpi_call
+reboot
 ```
 > update the the packages and check the new repos (asus-linux.org and tlp) for new packages
 
@@ -65,17 +67,27 @@ dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl akmo
 
 > acpi_call modules from the tlp repo is needed to make the custom fan control working
 
-**6. Enable the custom services**
-
+**6. Reboot**
 ```bash
-systemctl enable asusboot.service
+reboot
 ```
 
-> asusboot.service removes and adds again the i2c_hid modules because on Fedora 33 the touchpad sometimes is not initialized correctly on boot. This fixes this.
+**7. Install custom Kernel**
 
-**5. Reboot**
+```bash
+dnf install kernel/*.rpm
+```
 
-**6. You can switch your prefered graphics mode via the GNOME Shell extension "asus-nb-gex" or with "asusctl graphics -m (graphics mode)"**
+> the kernel helps with the 2021 G14 model to get suspend working
+
+> this will fix the touchpad issues with all the G14 models that don't initialize correctly sometimes
+
+**8. Reboot**
+```bash
+reboot
+```
+
+**9. You can switch your prefered graphics mode via the GNOME Shell extension "asusctl-gex" or with "asusctl graphics -m (graphics mode)"**
 
 ---
 
@@ -142,16 +154,6 @@ These are my custom fan curves for the asusd service from asus-linux.org.
 When on AC I usually use "normal" because of turbo is enabled with the default silent fan profile of the laptop.
 On "silent" I disabled turbo and I usually use this while on battery. This has a custom fan curve to make it silent.
 
-```
-etc/modprobe.d/asus.conf
-```
-Enables Nvidia power management and blacklists conflicting modules
-
-
-```
-etc/systemd/system/asusboot.service
-```
-removes and adds again the i2c_hid modules because on Fedora 32 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
 ```
 etc/tlp.conf
@@ -159,10 +161,6 @@ etc/tlp.conf
 marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand".
 I haven't set it to "powersave" as the CPU then does not clock higher than the base clock for me (Kernel 5.10). ondemand also seems pretty battery friendly, especially with the **silent** profile when the CPU Boost is disabled.
 
-```
-usr/sbin/asusboot
-```
-called by asusboot.service, gets called on boot and resets the i2c_hid modules because on Fedora 33 the touchpad sometimes is not initialized correctly on boot. This fixes this.
 
 ```
 etc/modules-load.d/...

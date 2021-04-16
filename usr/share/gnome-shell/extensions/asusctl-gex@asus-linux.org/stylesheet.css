@@ -1,0 +1,114 @@
+/* panel icons */
+.panel-icon {
+    background-size: 24px;
+    height: 40px;
+    width: 40px;
+}
+
+.panel-icon.logout,
+.panel-icon.reboot,
+.panel-icon.restartx {
+    background-image: url("icons/scalable/reboot.svg");
+}
+
+.panel-icon.red {
+    background-image: url("icons/64x64/asusctl-gex-red.png");
+}
+.panel-icon.orange {
+    background-image: url("icons/64x64/asusctl-gex-orange.png");
+}
+.panel-icon.yellow {
+    background-image: url("icons/64x64/asusctl-gex-yellow.png");
+}
+.panel-icon.green {
+    background-image: url("icons/64x64/asusctl-gex-green.png");
+}
+.panel-icon.blue {
+    background-image: url("icons/64x64/asusctl-gex-blue.png");
+}
+.panel-icon.white {
+    background-image: url("icons/64x64/asusctl-gex-white.png");
+}
+
+/* notification icons */
+.notification-icon {
+    background-size: contain;
+    height: 64px;
+    width: 64px;
+}
+.notification-icon.red {
+    background-image: url("icons/256x256/asusctl-gex-red.png");
+}
+.notification-icon.orange {
+    background-image: url("icons/256x256/asusctl-gex-orange.png");
+}
+.notification-icon.yellow {
+    background-image: url("icons/256x256/asusctl-gex-yellow.png");
+}
+.notification-icon.green {
+    background-image: url("icons/256x256/asusctl-gex-green.png");
+}
+.notification-icon.blue {
+    background-image: url("icons/256x256/asusctl-gex-blue.png");
+}
+.notification-icon.white {
+    background-image: url("icons/256x256/asusctl-gex-white.png");
+}
+
+.headline {
+    margin-bottom: 10px;
+}
+.headline-label {
+    font-weight: bold;
+    text-align: center;
+}
+
+.gfx-mode,
+.fan-mode {
+    background-size: contain;
+    background-position: 15px 0;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+}
+.gfx-mode{
+    background-size: 24px;
+    background-position: 24px 7px;
+}
+.gfx-mode.integrated.amd{
+    background-image: url("icons/scalable/gpu-amd.svg");
+}
+.gfx-mode.hybrid.amd,
+.gfx-mode.compute.amd,
+.gfx-mode.vfio.amd{
+    background-image: url("icons/scalable/gpu-amd-nvidia.svg");
+}
+.gfx-mode.integrated.intel{
+    background-image: url("icons/scalable/gpu-intel.svg");
+}
+.gfx-mode.hybrid.intel,
+.gfx-mode.compute.intel,
+.gfx-mode.vfio.intel{
+    background-image: url("icons/scalable/gpu-intel-nvidia.svg");
+}
+.gfx-mode.nvidia{
+    background-image: url("icons/scalable/gpu-nvidia.svg");
+}
+
+.fan-mode.silent {
+    background-image: url("icons/128x128/asusctl-gex-green.png");
+}
+.fan-mode.normal {
+    background-image: url("icons/128x128/asusctl-gex-yellow.png");
+}
+.fan-mode.boost {
+    background-image: url("icons/128x128/asusctl-gex-red.png");
+}
+
+/* .active {
+    background-color: #5C804B;
+} */
+
+.asusctl-modal-dialog{
+    padding: 30px;
+    font-size: 2em;
+}
