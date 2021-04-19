@@ -75,7 +75,8 @@ reboot
 **7. Install custom Kernel**
 
 ```bash
-dnf install kernel/*.rpm
+dnf copr enable lukenukem/asus-linux
+dnf update
 ```
 
 > the kernel helps with the 2021 G14 model to get suspend working
