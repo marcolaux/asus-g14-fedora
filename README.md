@@ -66,14 +66,14 @@ udevadm trigger
 **7. install some packages**
 ```bash
 dnf update
-dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl akmod-acpi_call brightnessctl
+dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asusctl akmod-acpi_call brightnessctl
 reboot
 ```
 > update the the packages and check the new repos (asus-linux.org and tlp) for new packages
 
 > akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
 
-> asus-nb-ctrl installs the currently necesary Kernel modules from asus-linux.org to get the function keys working
+> asusctl installs the currently necesary Kernel modules from asus-linux.org to get the function keys working
 
 > kernel-devel is necesarry for the dynamic kernel modules to compile
 
@@ -127,7 +127,7 @@ _**please note** that the message sometimes is not correct when you switch multi
 
 ### asusctl
 
-![asusctl](https://gitlab.com/asus-linux/asus-nb-ctrl) by Luke Jones (and his Kernel modules) are the key to this all. Without the efford of the community we wouldn't have such handy tools to control this machine. asusctl is used here to do most of the things, like graphics switching via the GNOME Shell extension or setting the ROG profiles.
+![asusctl](https://gitlab.com/asus-linux/asusctl) by Luke Jones (and his Kernel modules) are the key to this all. Without the efford of the community we wouldn't have such handy tools to control this machine. asusctl is used here to do most of the things, like graphics switching via the GNOME Shell extension or setting the ROG profiles.
 
 You can use asusctl to switch your profile like so (use _integrated_, _hybrid_, _compute_ or _nvidia_ instead of {profile}):
 ```
