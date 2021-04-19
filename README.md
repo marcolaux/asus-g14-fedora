@@ -14,19 +14,31 @@ This also should work with the 2021 models as the new custom kernel is in here.
 
 ```bash
 dnf update
-dnf install tlp tlp-rdw brightnessctl
 ```
-
-> tlp is used for automatic power management for some hardware components (so you don't have to powertop --auto-tune)
-
-> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
 
 **3. Reboot**
 ```bash
 reboot
 ```
 
-**4. copy all the files to the appropriate directories**
+**4. Install custom Kernel**
+
+```bash
+dnf copr enable lukenukem/asus-linux
+dnf update
+```
+
+> the kernel helps with the 2021 G14 model to get suspend working
+
+> this will fix the touchpad issues with all the G14 models that don't initialize correctly sometimes
+
+
+**5. Reboot**
+```bash
+reboot
+```
+
+**6. copy all the files to the appropriate directories**
 
 ```bash
 git clone https://github.com/hyphone/asus-g14-fedora.git
@@ -51,10 +63,10 @@ udevadm trigger
 
 > you can use brightnessctl -d asus::kbd_backlight s +1 and brightnessctl -d asus::kbd_backlight s 1- and map this to a key of your choice in your DE
 
-**5 install some packages**
+**7. install some packages**
 ```bash
 dnf update
-dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl akmod-acpi_call
+dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda asus-nb-ctrl akmod-acpi_call brightnessctl
 reboot
 ```
 > update the the packages and check the new repos (asus-linux.org and tlp) for new packages
@@ -67,21 +79,7 @@ reboot
 
 > acpi_call modules from the tlp repo is needed to make the custom fan control working
 
-**6. Reboot**
-```bash
-reboot
-```
-
-**7. Install custom Kernel**
-
-```bash
-dnf copr enable lukenukem/asus-linux
-dnf update
-```
-
-> the kernel helps with the 2021 G14 model to get suspend working
-
-> this will fix the touchpad issues with all the G14 models that don't initialize correctly sometimes
+> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
 
 **8. Reboot**
 ```bash
