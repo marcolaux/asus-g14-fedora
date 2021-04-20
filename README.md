@@ -33,11 +33,8 @@ reboot
 ```bash
 dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda akmod-acpi_call brightnessctl
 ```
-> update the the packages and check the new repos (asus-linux.org and tlp) for new packages
 
 > akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
-
-> asusctl installs the currently necesary Kernel modules from asus-linux.org to get the function keys working
 
 > kernel-devel is necesarry for the dynamic kernel modules to compile
 
@@ -80,6 +77,15 @@ reboot
 ---
 
 ## What's in here...
+
+### asusctl config with custom fan curves
+
+There is an example in etc/asusd/asusd_example.conf for how a custom fan curve should look like.
+I haven't named it asusd.conf so it does not override the defaults from asusctl and asusd.
+
+Custom fan curves have a problem at least on the 2020 models that sometimes the fans start to pulsate and one has to suspend one or two times to bring them back to a normal state.
+
+I also currently don't use custom fan curves because of this.
 
 ### Asus-nb-gex GNOME Shell extension (currently in development)
 
