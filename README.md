@@ -142,18 +142,11 @@ asusctl --help
 ***
 
 ```
-etc/asusd/asusd.conf
+etc/asusd/asusd_example.conf
 ```
 These are my custom fan curves for the asusd service from asus-linux.org.
 When on AC I usually use "normal" because of turbo is enabled with the default silent fan profile of the laptop.
 On "silent" I disabled turbo and I usually use this while on battery. This has a custom fan curve to make it silent.
-
-
-```
-etc/tlp.conf
-```
-marginal adjusted tlp configuration with the CPU gonvenor set to "ondemand".
-I haven't set it to "powersave" as the CPU then does not clock higher than the base clock for me (Kernel 5.10). ondemand also seems pretty battery friendly, especially with the **silent** profile when the CPU Boost is disabled.
 
 
 ```
