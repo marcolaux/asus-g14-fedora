@@ -1,10 +1,10 @@
-# Fedora 33 Setup with an ASUS Zephyrus G14 2020 and 2021 models
+# Fedora 33 Setup with an ASUS Zephyrus G14 2020 / 2021 model
 
 ---
 
 This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 33 including a GNOME Shell extension to switch between GPUs and ROG profiles.
 
-This also should work with the 2021 models as the new custom kernel is in here.
+This also should work with the 2021 models as the new custom kernel is in here. Perhaps with them you need to boot the live media with `nomodeset` and remove this parameter after you installed the nvidia-driver.
 
 ## Installation process
 
@@ -14,8 +14,8 @@ This also should work with the 2021 models as the new custom kernel is in here.
 
 ```bash
 dnf copr enable lukenukem/asus-linux
-dnf install asusctl
 dnf update --refresh
+dnf install asusctl
 ```
 
 > this also will install a custom kernel that helps with the 2021 G14 model to get suspend working
@@ -29,20 +29,7 @@ dnf update --refresh
 reboot
 ```
 
-**4. install some packages**
-```bash
-dnf install kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda akmod-acpi_call brightnessctl
-```
-
-> akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
-
-> kernel-devel is necesarry for the dynamic kernel modules to compile
-
-> acpi_call modules from the tlp repo is needed to make the custom fan control working
-
-> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
-
-**5. copy all the files to the appropriate directories**
+**4. copy all the files to the appropriate directories**
 
 ```bash
 git clone https://github.com/hyphone/asus-g14-fedora.git
@@ -66,6 +53,20 @@ udevadm trigger
 > mod the keyboard that **page up / down** is mapped to **fn+up/down** while **home (pos1) / end** is mapped to **fn+left/right**
 
 > you can use brightnessctl -d asus::kbd_backlight s +1 and brightnessctl -d asus::kbd_backlight s 1- and map this to a key of your choice in your DE
+
+
+**5. install some packages**
+```bash
+dnf install --refresh kernel-devel akmod-nvidia xorg-x11-drv-nvidia-cuda akmod-acpi_call brightnessctl
+```
+
+> akmod-nvidia and xorg-x11-drv-nvidia-cuda installs the Nvidia driver
+
+> kernel-devel is necesarry for the dynamic kernel modules to compile
+
+> acpi_call modules from the tlp repo is needed to make the custom fan control working
+
+> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
 
 **6. Reboot**
 ```bash
