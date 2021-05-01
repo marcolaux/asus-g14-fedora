@@ -36,9 +36,12 @@ git clone https://github.com/hyphone/asus-g14-fedora.git
 cd asus-g14-fedora
 cp -R etc/* /etc/
 cp -R usr/* /usr/
-chmod a+x /usr/lib/systemd/system-sleep/asus_keyboard_backlight
 systemd-hwdb update
 udevadm trigger
+chmod +x /usr/bin/asus_backlight_off
+systemctl enable asus_backlight_off_after_suspend.service
+systemctl enable asus_backlight_off_before_suspend.service
+systemctl enable asus_hibernate.service
 ```
 > we clone this repo
 
@@ -48,11 +51,13 @@ udevadm trigger
 
 > we copy everything in this repo of usr to /usr/
 
-> we make the script /usr/sbin/asusboot and /usr/lib/systemd/system-sleep/asus_keyboard_backlight executable
-
 > mod the keyboard that **page up / down** is mapped to **fn+up/down** while **home (pos1) / end** is mapped to **fn+left/right**
 
-> you can use brightnessctl -d asus::kbd_backlight s +1 and brightnessctl -d asus::kbd_backlight s 1- and map this to a key of your choice in your DE
+> you can use `brightnessctl -d asus::kbd_backlight s +1` and `brightnessctl -d asus::kbd_backlight s 1-` and map this to a key of your choice in your desktop environment
+
+> `asus_backlight_off_after_suspend.service` / `asus_backlight_off_before_suspend.service` will turn off the keyboard backlight before and after suspend.<br>There is a bug that the keyboard backlight does not fully turn off on it's own when suspending when it was on before. After suspend the backlight is usually in a different state than before. To unify this behaviour we just turn it off when suspending and on waking the machine.<br>I made services out of it and haven't put it in /usr/lib/systemd/system-sleep because of an SELinux bug that prevents scripts from executing there on F34.
+
+> asus_hibernate.service restarts asusd after hibernation to re-apply the power profile.
 
 
 **5. install some packages**

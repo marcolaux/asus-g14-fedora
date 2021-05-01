@@ -1,0 +1,11 @@
+[Unit]
+Description=ASUS keyboard backlight off. . .
+After=suspend.target
+
+[Service]
+User=root
+Type=simple
+ExecStart=/usr/bin/asus_backlight_off
+
+[Install]
+WantedBy=suspend.target

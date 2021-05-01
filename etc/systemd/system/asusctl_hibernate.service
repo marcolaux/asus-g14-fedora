@@ -1,0 +1,11 @@
+[Unit]
+Description=asusctl restart after hibernation . . .
+After=hibernate.target sleep-then-hibernate.target hybrid-sleep.target
+
+[Service]
+User=root
+Type=simple
+ExecStart=systemctl restart asusd
+
+[Install]
+WantedBy=hibernate.target sleep-then-hibernate.target hybrid-sleep.target
