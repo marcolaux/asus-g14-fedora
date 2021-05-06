@@ -1,4 +1,4 @@
-# Fedora 33 Setup with an ASUS Zephyrus G14 2020 model
+# Fedora 34 Setup with an ASUS Zephyrus G14 2020 model
 
 ---
 
@@ -6,7 +6,7 @@ This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 
 
 ## Installation process
 
-**1. Install Fedora 33**
+**1. Install Fedora 34**
 
 **2. Boot to your installation, add Lukes Copr and update everything**
 
