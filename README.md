@@ -1,10 +1,8 @@
-# Fedora 33 Setup with an ASUS Zephyrus G14 2020 / 2021 model
+# Fedora 33 Setup with an ASUS Zephyrus G14 2020 model
 
 ---
 
-This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 33 including a GNOME Shell extension to switch between GPUs and ROG profiles.
-
-This also should work with the 2021 models as the new custom kernel is in here. Perhaps with them you need to boot the live media with `nomodeset` and remove this parameter after you installed the nvidia-driver.
+This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 34 including a GNOME Shell extension to switch between GPUs and ROG profiles.
 
 ## Installation process
 
@@ -17,8 +15,6 @@ dnf copr enable lukenukem/asus-linux
 dnf update --refresh
 dnf install asusctl
 ```
-
-> this also will install a custom kernel that helps with the 2021 G14 model to get suspend working
 
 > this also will fix the touchpad issues with all the G14 models that don't initialize correctly sometimes
 
