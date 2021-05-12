@@ -30,6 +30,7 @@ var Profile = class Profile {
                 return this.asusLinuxProxy.ProfileNamesSync();
             }
             catch (e) {
+                Log.error(`Profile DBus getting power profile names failed!`);
                 Log.error(e);
             }
         }
@@ -40,6 +41,7 @@ var Profile = class Profile {
                 GLib.spawn_command_line_async(`asusctl profile ${mode}`);
             }
             catch (e) {
+                Log.error(`Profile DBus set power profile failed!`);
                 Log.error(e);
             }
         }
@@ -51,6 +53,7 @@ var Profile = class Profile {
                 this.updateProfile(curActiveProfile);
             }
             catch (e) {
+                Log.error(`Profile DBus getting current power profile name failed!`);
                 Log.error(e);
             }
             finally {
@@ -69,7 +72,7 @@ var Profile = class Profile {
                 Panel.Actions.notify(Panel.Title, message, this.profileIcons[curState], this.profileColor[curState]);
             }
             else {
-                Main.panel.statusArea['asusctl-gex.panel'].style_class = `panel-icon ${this.profileColor[curState]}`;
+                Main.panel.statusArea['asusctl-gex.panel'].style_class = `${this.profileColor[curState]}`;
             }
             this.lastState = curState;
         }
@@ -84,6 +87,7 @@ var Profile = class Profile {
                 this.sourceId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1, this.poller.bind(this));
             }
             catch (e) {
+                Log.error(`Profile DBus Poller initialization failed!`);
                 Log.error(e);
             }
         }

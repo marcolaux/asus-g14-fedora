@@ -12,6 +12,7 @@ var File = class File {
         }
         catch (e) {
             Log.error(`Failed to load "${file}"`);
+            Log.error(e);
         }
     }
 }

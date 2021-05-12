@@ -2,7 +2,7 @@
   "name": "asusctl-gex",
   "description": "This extension allows you to visualize most of the asusd settings and status",
   "uuid": "asusctl-gex@asus-linux.org",
-  "version": 5,
+  "version": "1.0.0-rc2",
   "shell-version": [
     "3.36",
     "3.38",

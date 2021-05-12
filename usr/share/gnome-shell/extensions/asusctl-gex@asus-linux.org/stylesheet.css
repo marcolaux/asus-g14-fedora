@@ -1,33 +1,35 @@
 /* panel icons */
-.panel-icon {
-    background-size: 24px;
-    height: 40px;
+.asusctl-gex-panel-icon {
+    background-size: 30px;
     width: 40px;
+    background-image: url("icons/scalable/rog-white.svg");
 }
 
-.panel-icon.logout,
-.panel-icon.reboot,
-.panel-icon.restartx {
+.logout .asusctl-gex-panel-icon,
+.reboot .asusctl-gex-panel-icon,
+.restartx .asusctl-gex-panel-icon {
     background-image: url("icons/scalable/reboot.svg");
 }
 
-.panel-icon.red {
-    background-image: url("icons/64x64/asusctl-gex-red.png");
+.red:hover .asusctl-gex-panel-icon,
+.red:active .asusctl-gex-panel-icon {
+    background-image: url("icons/scalable/rog-red.svg");
 }
-.panel-icon.orange {
-    background-image: url("icons/64x64/asusctl-gex-orange.png");
+.orange:hover .asusctl-gex-panel-icon,
+.orange:active .asusctl-gex-panel-icon {
+    background-image: url("icons/scalable/rog-orange.svg");
 }
-.panel-icon.yellow {
-    background-image: url("icons/64x64/asusctl-gex-yellow.png");
+.yellow:hover .asusctl-gex-panel-icon,
+.yellow:active .asusctl-gex-panel-icon {
+    background-image: url("icons/scalable/rog-yellow.svg");
 }
-.panel-icon.green {
-    background-image: url("icons/64x64/asusctl-gex-green.png");
+.green:hover .asusctl-gex-panel-icon,
+.green:active .asusctl-gex-panel-icon {
+    background-image: url("icons/scalable/rog-green.svg");
 }
-.panel-icon.blue {
-    background-image: url("icons/64x64/asusctl-gex-blue.png");
-}
-.panel-icon.white {
-    background-image: url("icons/64x64/asusctl-gex-white.png");
+.blue:hover .asusctl-gex-panel-icon,
+.blue:active .asusctl-gex-panel-icon {
+    background-image: url("icons/scalable/rog-blue.svg");
 }
 
 /* notification icons */
@@ -37,22 +39,22 @@
     width: 64px;
 }
 .notification-icon.red {
-    background-image: url("icons/256x256/asusctl-gex-red.png");
+    background-image: url("icons/scalable/rog-red.svg");
 }
 .notification-icon.orange {
-    background-image: url("icons/256x256/asusctl-gex-orange.png");
+    background-image: url("icons/scalable/rog-orange.svg");
 }
 .notification-icon.yellow {
-    background-image: url("icons/256x256/asusctl-gex-yellow.png");
+    background-image: url("icons/scalable/rog-yellow.svg");
 }
 .notification-icon.green {
-    background-image: url("icons/256x256/asusctl-gex-green.png");
+    background-image: url("icons/scalable/rog-green.svg");
 }
 .notification-icon.blue {
-    background-image: url("icons/256x256/asusctl-gex-blue.png");
+    background-image: url("icons/scalable/rog-blue.svg");
 }
 .notification-icon.white {
-    background-image: url("icons/256x256/asusctl-gex-white.png");
+    background-image: url("icons/scalable/rog-white.svg");
 }
 
 .headline {
@@ -94,14 +96,18 @@
     background-image: url("icons/scalable/gpu-nvidia.svg");
 }
 
+.fan-mode{
+    background-size: 24px;
+    background-position: 24px 8px;
+}
 .fan-mode.silent {
-    background-image: url("icons/128x128/asusctl-gex-green.png");
+    background-image: url("icons/scalable/rog-green.svg");
 }
 .fan-mode.normal {
-    background-image: url("icons/128x128/asusctl-gex-yellow.png");
+    background-image: url("icons/scalable/rog-yellow.svg");
 }
 .fan-mode.boost {
-    background-image: url("icons/128x128/asusctl-gex-red.png");
+    background-image: url("icons/scalable/rog-red.svg");
 }
 
 /* .active {

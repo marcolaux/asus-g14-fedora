@@ -8,8 +8,9 @@ var Client = class Client {
         try {
             this.connector = new DBus.Profile("org-asuslinux-profile-3.0.0");
         }
-        catch {
+        catch (e) {
             Log.error(`Profile client initialization failed!`);
+            Log.error(e);
         }
     }
     start() {
@@ -21,6 +22,7 @@ var Client = class Client {
             this.connected = true;
         }
         catch (e) {
+            Log.error(`Profile start failed!`);
             Log.error(e);
         }
     }

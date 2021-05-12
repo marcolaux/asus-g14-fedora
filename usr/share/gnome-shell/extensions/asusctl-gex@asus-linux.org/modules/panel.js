@@ -16,15 +16,29 @@ var Button = class Button {
             Extends: PanelMenu.Button,
             _init: function () {
                 this.parent(null, 'AsusNbPanel');
-                this.add_actor(new St.Icon({ style_class: 'panel-icon' }));
+                this.add_style_class_name('panel-status-button asusctl-gex-panel-button');
+                this._icon = new St.Icon({
+                    style_class: 'system-status-icon asusctl-gex-panel-icon'
+                });
+                this._iconnew = new St.Icon({
+                    style_class: 'system-status-icon asusctl-gex-panel-icon'
+                });
+                this._buttonProfile = new St.Bin({
+                    style_class: 'panel-button profile',
+                    reactive: true,
+                    can_focus: true,
+                    track_hover: true
+                });
+                this._buttonProfile.set_child(this._icon);
+                this._buttonProfile.set_child(this._iconnew);
+                this.add_actor(this._buttonProfile);
                 this.popupMenu = new Popup.Menu(this.menu);
             }
         });
     }
     create() {
         this.indicator = new this.AsusNb_Indicator();
-        Main.panel.addToStatusArea('asusctl-gex.panel', this.indicator, 1, Main.panel._rightBox);
-        Main.panel.statusArea['asusctl-gex.panel'].style_class = 'panel-icon white';
+        Main.panel.addToStatusArea('asusctl-gex.panel', this.indicator);
     }
     destroy() {
         if (this.indicator !== null) {
@@ -39,6 +53,7 @@ var Actions = class Actions {
             GLib.spawn_command_line_async(command);
         }
         catch (e) {
+            Log.error(`Spawning command failed: ${command}`);
             Log.error(e);
         }
     }

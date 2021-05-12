@@ -8,6 +8,18 @@ var GfxMode = class GfxMode {
         this.asusLinuxProxy = null;
         this.connected = false;
         this.lastState = '';
+        this.gfxLabels = {
+            1: 'integrated',
+            2: 'compute',
+            3: 'vfio',
+            4: 'hybrid',
+            0: 'nvidia'
+        };
+        this.powerLabel = {
+            0: 'suspended',
+            1: 'active',
+            2: 'off'
+        };
         this.userAction = {
             0: 'logout',
             1: 'reboot',
@@ -16,14 +28,30 @@ var GfxMode = class GfxMode {
         this.xml = Resources.File.DBus(xml);
     }
     getGfxMode() {
-        if (this.connected)
-            return `${this.asusLinuxProxy.VendorSync()}`;
+        let currentMode = false;
+        if (this.connected) {
+            try {
+                currentMode = this.asusLinuxProxy.VendorSync();
+            }
+            catch (e) {
+                Log.error('Graphics Mode DBus: get current mode failed!');
+                Log.error(e);
+            }
+        }
+        return currentMode;
     }
     setGfxMode(mode) {
+        let newMode = false;
         if (this.connected) {
-            Log.info('setting ' + mode);
-            return this.asusLinuxProxy.SetVendorSync(mode);
+            try {
+                newMode = this.asusLinuxProxy.SetVendorSync(mode);
+            }
+            catch (e) {
+                Log.error('Graphics Mode DBus switching failed!');
+                Log.error(e);
+            }
         }
+        return newMode;
     }
     start() {
         Log.info(`Starting Graphics Mode DBus client...`);
@@ -39,11 +67,12 @@ var GfxMode = class GfxMode {
         if (this.connected) {
             let vendor = this.asusLinuxProxy.VendorSync().toString().trim();
             let power = this.asusLinuxProxy.PowerSync().toString().trim();
-            Log.info(`Initial Graphics Mode is ${vendor} ${power}`);
+            Log.info(`Initial Graphics Mode is ${this.gfxLabels[vendor]}. Power State at the moment is ${this.powerLabel[power]} (this can change on hybrid and compute mode)`);
             try {
                 Panel.Actions.updateMode('gfx-mode', vendor, power);
             }
             catch (e) {
+                Log.error(`Update Panel Graphics mode failed!`);
                 Log.error(e);
             }
             this.asusLinuxProxy.connectSignal("NotifyAction", (proxy_ = null, name_, value) => {
