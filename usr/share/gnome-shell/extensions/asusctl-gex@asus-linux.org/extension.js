@@ -57,9 +57,13 @@ var Extension = class Extension {
                             menuItems[item].label.set_text(`${menuItems[item].label.text}  ✔`);
                         }
                         menu.addMenuItem(menuItems[item], position);
-                        menuItems[item].connect('activate', () => { this.gfxMode.connector.setGfxMode(item); });
+                        menuItems[item].connect('activate', () => {
+                            this.gfxMode.connector.setGfxMode(item);
+                        });
                         position++;
                     }
+                    let gpuPowerItem = new PM.PopupMenuItem('dedicated GPU: on', { style_class: 'gpupower on' });
+                    menu.addMenuItem(gpuPowerItem, 1);
                 }
             });
         }
@@ -71,7 +75,6 @@ var Extension = class Extension {
         this.panelButton.destroy();
     }
 }
-let ext = null;
 function init() {
     ext = new Extension();
     return ext;

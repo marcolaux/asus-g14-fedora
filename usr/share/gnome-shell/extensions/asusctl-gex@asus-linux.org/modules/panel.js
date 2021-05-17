@@ -12,26 +12,53 @@ var Title = 'AsusNB Control';
 var Button = class Button {
     constructor() {
         this.AsusNb_Indicator = new Lang.Class({
-            Name: 'asusctl-gex.indicator',
+            Name: 'asusctl-gex-indicator',
             Extends: PanelMenu.Button,
             _init: function () {
                 this.parent(null, 'AsusNbPanel');
-                this.add_style_class_name('panel-status-button asusctl-gex-panel-button');
-                this._icon = new St.Icon({
-                    style_class: 'system-status-icon asusctl-gex-panel-icon'
-                });
-                this._iconnew = new St.Icon({
-                    style_class: 'system-status-icon asusctl-gex-panel-icon'
-                });
-                this._buttonProfile = new St.Bin({
-                    style_class: 'panel-button profile',
+                this._defaultClasses = 'panel-status-button asusctl-gex-panel-button';
+                this.style_class = this._defaultClasses;
+                let indicatorLayout = new St.BoxLayout({
+                    vertical: false,
+                    style_class: 'asusctl-gex-panel-layout system-status-icon panel-button',
                     reactive: true,
                     can_focus: true,
                     track_hover: true
                 });
-                this._buttonProfile.set_child(this._icon);
-                this._buttonProfile.set_child(this._iconnew);
-                this.add_actor(this._buttonProfile);
+                this._binProfile = new St.Bin({
+                    style_class: ' panel-bin-profile',
+                    reactive: true,
+                    can_focus: true,
+                    track_hover: true
+                });
+                this._binGpu = new St.Bin({
+                    style_class: 'panel-bin-gpu',
+                    reactive: true,
+                    can_focus: true,
+                    track_hover: true
+                });
+                this._binGpuPower = new St.Bin({
+                    style_class: 'panel-bin-gpupower',
+                    reactive: true,
+                    can_focus: true,
+                    track_hover: true
+                });
+                this._iconProfile = new St.Icon({
+                    style_class: 'asusctl-gex-panel-icon asusctl-gex-panel-icon-profile'
+                });
+                this._iconGpu = new St.Icon({
+                    style_class: 'asusctl-gex-panel-icon asusctl-gex-panel-icon-gpu'
+                });
+                this._iconGpuPower = new St.Icon({
+                    style_class: 'asusctl-gex-panel-icon asusctl-gex-panel-icon-gpupower'
+                });
+                this._binProfile.add_actor(this._iconProfile);
+                this._binGpu.add_actor(this._iconGpu);
+                this._binGpuPower.add_actor(this._iconGpuPower);
+                indicatorLayout.add_child(this._binProfile);
+                indicatorLayout.add_child(this._binGpu);
+                indicatorLayout.add_child(this._binGpuPower);
+                this.add_child(indicatorLayout);
                 this.popupMenu = new Popup.Menu(this.menu);
             }
         });
@@ -57,8 +84,8 @@ var Actions = class Actions {
             Log.error(e);
         }
     }
-    static notify(msg = Title, details, icon, panelIcon = "", action = "") {
-        let gIcon = Gio.icon_new_for_string(`${Me.path}/icons/128x128/${icon}.png`);
+    static notify(msg = Title, details, icon, action = "") {
+        let gIcon = Gio.icon_new_for_string(`${Me.path}/icons/scalable/${icon}.svg`);
         let source = new MessageTray.Source(msg, icon, { gicon: gIcon });
         let notification = new MessageTray.Notification(source, msg, details, { gicon: gIcon });
         Main.messageTray.add(source);
@@ -70,21 +97,25 @@ var Actions = class Actions {
             notification.addAction('Log Out Now!', () => { this.spawnCommandLine('gnome-session-quit'); });
         }
         source.showNotification(notification);
-        if (panelIcon !== '')
-            Main.panel.statusArea['asusctl-gex.panel'].style_class = 'panel-icon ' + panelIcon;
     }
-    static updateMode(selector, vendor, value = '') {
-        Log.info(`(panel) new ${selector} mode: ${vendor}${(value ? ':' + value : '')}`);
+    static updateMode(selector, vendor) {
         let menuItems = Main.panel.statusArea['asusctl-gex.panel'].menu._getMenuItems();
         menuItems.forEach((mi) => {
             if (mi.style_class.includes(selector)) {
-                if (mi.style_class.includes(vendor)) {
-                    mi.style_class = `${mi.style_class} active`;
-                    mi.label.set_text(`${mi.label.text}  ✔`);
+                if (selector == 'gpupower') {
+                    mi.style_class = `${selector} ${vendor}`;
+                    mi.label.set_text(`dedicated GPU: ${vendor}`);
                 }
-                else if (mi.style_class.includes('active')) {
-                    mi.style_class = mi.style_class.split('active').join(' ');
-                    mi.label.set_text(mi.label.text.substr(0, mi.label.text.length - 3));
+                else {
+                    if (mi.style_class.includes(vendor) && !mi.style_class.includes('active')) {
+                        mi.style_class = `${mi.style_class} active`;
+                        mi.label.set_text(`${mi.label.text}  ✔`);
+                    }
+                    else if (mi.style_class.includes('active')) {
+                        mi.style_class = mi.style_class.split('active').join(' ');
+                        Log.info(mi.style_class);
+                        mi.label.set_text(mi.label.text.substr(0, mi.label.text.length - 3));
+                    }
                 }
             }
         });

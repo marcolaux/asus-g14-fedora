@@ -3,9 +3,12 @@ const Log = Me.imports.modules.log;
 const DBus = Me.imports.modules.gfx_mode_dbus;
 const GLib = imports.gi.GLib;
 var Client = class Client {
-    constructor() {
+    constructor(panelButton = null) {
+        this.panelButton = null;
+        this.igpu = 'intel';
         this.connector = null;
         this.connected = false;
+        this.panelButton = panelButton;
         try {
             this.connector = new DBus.GfxMode("org-asuslinux-gfx-3.0.0");
         }
@@ -21,7 +24,8 @@ var Client = class Client {
         try {
             let isAMD = GLib.file_test('/sys/bus/pci/drivers/amdgpu', GLib.FileTest.EXISTS);
             Log.info(`integrated GPU: AMD`);
-            return isAMD ? 'amd' : 'intel';
+            this.igpu = isAMD ? 'amd' : 'intel';
+            return this.igpu;
         }
         catch (e) {
             Log.info(`integrated GPU: Intel`);

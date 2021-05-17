@@ -4,7 +4,6 @@ const Panel = Me.imports.modules.panel;
 const Resources = Me.imports.modules.resources;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Main = imports.ui.main;
 var Profile = class Profile {
     constructor(xml) {
         this.sourceId = null;
@@ -13,9 +12,9 @@ var Profile = class Profile {
         this.lastState = '';
         this.profileDesc = new Array();
         this.profileIcons = {
-            'boost': 'asusctl-gex-red',
-            'normal': 'asusctl-gex-yellow',
-            'silent': 'asusctl-gex-green'
+            'boost': 'rog-red',
+            'normal': 'rog-yellow',
+            'silent': 'rog-green'
         };
         this.profileColor = {
             'boost': 'red',
@@ -50,7 +49,10 @@ var Profile = class Profile {
         if (this.connected) {
             try {
                 let curActiveProfile = this.asusLinuxProxy.ActiveProfileNameSync().toString().trim();
-                this.updateProfile(curActiveProfile);
+                if (curActiveProfile !== this.lastState) {
+                    this.updateProfile(curActiveProfile);
+                    this.lastState = curActiveProfile;
+                }
             }
             catch (e) {
                 Log.error(`Profile DBus getting current power profile name failed!`);
@@ -69,11 +71,10 @@ var Profile = class Profile {
             let message = `${((this.lastState === '') ? 'initial' : 'changed')} profile: ${curState}`;
             Panel.Actions.updateMode('fan-mode', curState);
             if (this.lastState !== '') {
-                Panel.Actions.notify(Panel.Title, message, this.profileIcons[curState], this.profileColor[curState]);
+                Panel.Actions.notify(Panel.Title, message, this.profileColor[curState]);
             }
-            else {
-                Main.panel.statusArea['asusctl-gex.panel'].style_class = `${this.profileColor[curState]}`;
-            }
+            ext.panelButton.indicator.style_class = `${ext.panelButton.indicator._defaultClasses} ${curState} ${ext.gfxMode.connector.gfxLabels[ext.gfxMode.connector.lastState]} ${ext.gfxMode.connector.powerLabel[ext.gfxMode.connector.lastStatePower]} ${ext.gfxMode.igpu}`;
+            Log.info(ext.panelButton.indicator.style_class);
             this.lastState = curState;
         }
     }

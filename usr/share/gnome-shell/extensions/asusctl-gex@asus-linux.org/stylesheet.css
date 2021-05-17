@@ -1,60 +1,68 @@
 /* panel icons */
+
+.asusctl-gex-panel-layout{
+    width: 115px;
+    padding: 0 5px;
+}
 .asusctl-gex-panel-icon {
-    background-size: 30px;
-    width: 40px;
+    background-size: 28px;
+    width: 20px;
+    padding: 0 10px;
     background-image: url("icons/scalable/rog-white.svg");
 }
+.asusctl-gex-panel-icon-gpupower{
+    background-size: 17px;
+    width: 17px;
+}
+.asusctl-gex-panel-icon-gpu{
+    background-size: 20px;
+    background-image: url("icons/scalable/gpu-none.svg");
+}
 
-.logout .asusctl-gex-panel-icon,
-.reboot .asusctl-gex-panel-icon,
-.restartx .asusctl-gex-panel-icon {
+.logout .asusctl-gex-panel-icon-profile,
+.reboot .asusctl-gex-panel-icon-profile,
+.restartx .asusctl-gex-panel-icon-profile {
     background-image: url("icons/scalable/reboot.svg");
+    background-size: 18px;
 }
 
-.red:hover .asusctl-gex-panel-icon,
-.red:active .asusctl-gex-panel-icon {
-    background-image: url("icons/scalable/rog-red.svg");
-}
-.orange:hover .asusctl-gex-panel-icon,
-.orange:active .asusctl-gex-panel-icon {
-    background-image: url("icons/scalable/rog-orange.svg");
-}
-.yellow:hover .asusctl-gex-panel-icon,
-.yellow:active .asusctl-gex-panel-icon {
+.normal:hover .asusctl-gex-panel-icon-profile {
     background-image: url("icons/scalable/rog-yellow.svg");
 }
-.green:hover .asusctl-gex-panel-icon,
-.green:active .asusctl-gex-panel-icon {
-    background-image: url("icons/scalable/rog-green.svg");
+.boost:hover .asusctl-gex-panel-icon-profile {
+    background-image: url("icons/scalable/rog-red.svg");
 }
-.blue:hover .asusctl-gex-panel-icon,
-.blue:active .asusctl-gex-panel-icon {
-    background-image: url("icons/scalable/rog-blue.svg");
+.silent:hover .asusctl-gex-panel-icon-profile {
+    background-image: url("icons/scalable/rog-green.svg");
 }
 
-/* notification icons */
-.notification-icon {
-    background-size: contain;
-    height: 64px;
-    width: 64px;
+.active .asusctl-gex-panel-icon-gpupower {
+    background-image: url("icons/scalable/bulb-on.svg");
 }
-.notification-icon.red {
-    background-image: url("icons/scalable/rog-red.svg");
+.off .asusctl-gex-panel-icon-gpupower,
+.suspended .asusctl-gex-panel-icon-gpupower,
+.unknown .asusctl-gex-panel-icon-gpupower{
+    background-image: url("icons/scalable/bulb-off.svg");
+    background-size: 11px;
 }
-.notification-icon.orange {
-    background-image: url("icons/scalable/rog-orange.svg");
+.integrated.amd:hover .asusctl-gex-panel-icon-gpu{
+    background-image: url("icons/scalable/gpu-amd.svg");
 }
-.notification-icon.yellow {
-    background-image: url("icons/scalable/rog-yellow.svg");
+.hybrid.amd:hover .asusctl-gex-panel-icon-gpu,
+.compute.amd:hover .asusctl-gex-panel-icon-gpu,
+.vfio.amd:hover .asusctl-gex-panel-icon-gpu{
+    background-image: url("icons/scalable/gpu-amd-nvidia.svg");
 }
-.notification-icon.green {
-    background-image: url("icons/scalable/rog-green.svg");
+.integrated.intel:hover .asusctl-gex-panel-icon-gpu{
+    background-image: url("icons/scalable/gpu-intel.svg");
 }
-.notification-icon.blue {
-    background-image: url("icons/scalable/rog-blue.svg");
+.hybrid.intel:hover .asusctl-gex-panel-icon-gpu,
+.compute.intel:hover .asusctl-gex-panel-icon-gpu,
+.vfio.intel:hover .asusctl-gex-panel-icon-gpu{
+    background-image: url("icons/scalable/gpu-intel-nvidia.svg");
 }
-.notification-icon.white {
-    background-image: url("icons/scalable/rog-white.svg");
+.nvidia:hover .asusctl-gex-panel-icon-gpu{
+    background-image: url("icons/scalable/gpu-nvidia.svg");
 }
 
 .headline {
@@ -66,11 +74,13 @@
 }
 
 .gfx-mode,
-.fan-mode {
+.fan-mode,
+.gpupower {
     background-size: contain;
     background-position: 15px 0;
     background-repeat: no-repeat;
     padding-left: 35px;
+    padding-right: 25px;
 }
 .gfx-mode{
     background-size: 24px;
@@ -110,9 +120,22 @@
     background-image: url("icons/scalable/rog-red.svg");
 }
 
-/* .active {
-    background-color: #5C804B;
-} */
+.gpupower{
+    background-size: 18px;
+    background-position: 27px 0px;
+    padding-left: 40px;
+    height: 40px;
+}
+.gpupower.active{
+    background-image: url("icons/scalable/bulb-on.svg");
+}
+.gpupower.off,
+.gpupower.suspended,
+.gpupower.unknown{
+    background-image: url("icons/scalable/bulb-off.svg");
+    background-position: 30px 2px;
+    background-size: 13px;
+}
 
 .asusctl-modal-dialog{
     padding: 30px;
