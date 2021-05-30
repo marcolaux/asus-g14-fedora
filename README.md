@@ -78,6 +78,13 @@ reboot
 
 ---
 
+
+## GUIs for controlling asusctl
+
+- ![asusctl-gex (GNOME Shell extension)](https://gitlab.com/asus-linux/asusctl-gex)
+- ![asusctltray (Systray app)](https://github.com/Baldomo/asusctltray/)
+
+
 ## What's in here...
 
 ### asusctl config with custom fan curves
@@ -89,57 +96,9 @@ Custom fan curves have a problem at least on the 2020 models that sometimes the 
 
 I also currently don't use custom fan curves because of this.
 
-### Asus-nb-gex GNOME Shell extension (currently in development)
-
-The main repo for the Gnome Shell extension can be found here: ![https://gitlab.com/asus-linux/asus-nb-gex](https://gitlab.com/asus-linux/asus-nb-gex)
-It is currently still in development when we find the time. In this repo here you find the most current version that I also use:
-![https://gitlab.com/asus-linux/asus-nb-gex/-/tree/dev/1.0.0](dev/1.0.0).
-
-![](https://raw.githubusercontent.com/hyphone/asus-g14-fedora/master/screenshot.png)
-
-**Graphics Mode**
-
-- _integrated_ - only use integrated AMD GPU while the NVIDIA is completely turned off
-- _hybrid_ - use the integrated AMD GPU as the main GPU. The NVIDIA can be used for offloading *1
-- _compute_ - use the integrated AMD GPU as the main GPU. The NVIDIA can be used for CUDA / OpenCL but not for offloading graphics.
-- _vfio_ - use the integrated AMD GPU as the main GPU. The NVIDIA can be used in combination with a VM for GPU passthrough.
-- _nvidia_ - use the dedicated NVIDIA GPU as the main GPU.
-
-*1 to offload a graphics application to your NVIDIA you can use GNOME Shells feature via right click on an application icon and use **run with dedicated graphics adapter**
-
-**Profile**
-- _Boost_ - high fan RPM, Ryzen Boost enabled
-- _Normal_ - silent fan until 49°C CPU temperature, spins up at higher temps, Ryzen Boost enabled
-- _Silent_ - silent fan until 69°C CPU temperature, spins up at higher temps, Ryzen Boost disabled
-
-**usually a reboot or a restart of Xorg is required to apply the changes. There will be a notification with a call to action to give you a hint what action is required.**
-![](https://user-images.githubusercontent.com/6410852/106669281-b8d96500-65ab-11eb-9e1e-adbd0126587d.png)
-_**please note** that the message sometimes is not correct when you switch multiple times without doing the appropriate action. So save your work and do as the asusctl and this extension tells you :)_
-
-> **silent** is good for the **integrated** graphics mode. for **every other** graphics mode I recommend **normal** as the case would heat up too much on silent.
-
-> This extension uses asusctl to switch modes via asusctl's DBUS interface. You can either use the extension or asusctl directly if you don't use GNOME Shell.
-
-> If you don't have GNOME Shell but a desktop environment with a system tray I suggest you use this very handy application: ![asusctltray](https://github.com/Baldomo/asusctltray/)
-
 ### asusctl
 
 ![asusctl](https://gitlab.com/asus-linux/asusctl) by Luke Jones (and his Kernel modules) are the key to this all. Without the efford of the community we wouldn't have such handy tools to control this machine. asusctl is used here to do most of the things, like graphics switching via the GNOME Shell extension or setting the ROG profiles.
-
-You can use asusctl to switch your profile like so (use _integrated_, _hybrid_, _compute_ or _nvidia_ instead of {profile}):
-```
-asusctl graphics -m {profile}
-```
-
-You can also change the ROG profile via asusctl (use _silent_, _normal_ or _boost_ instead of {profile}):
-```
-asusctl profile {profile}
-```
-
-for more options have a look at this command:
-```
-asusctl --help
-```
 
 ***
 
