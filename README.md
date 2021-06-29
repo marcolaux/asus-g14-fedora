@@ -4,7 +4,7 @@
 
 This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 34 including a GNOME Shell extension to switch between GPUs and ROG profiles.
 
-**This is my personal config, no official guide**.<br>If you want support from the asus-linux community please have a look at the official install guide here: ![](https://asus-linux.org/wiki/fedora-guide/)
+**This is my personal config, no official guide**.<br>If you want support from the asus-linux community please have a look at the official install guide here: ![https://asus-linux.org/wiki/fedora-guide/](https://asus-linux.org/wiki/fedora-guide/)
 
 ## Installation process
 
