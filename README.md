@@ -76,10 +76,9 @@ reboot
 ---
 
 
-## GUIs for controlling asusctl
+## GUI for controlling asusctl
 
 - ![asusctl-gex (GNOME Shell extension)](https://gitlab.com/asus-linux/asusctl-gex)
-- ![asusctltray (Systray app)](https://github.com/Baldomo/asusctltray/)
 
 
 ## What's in here...

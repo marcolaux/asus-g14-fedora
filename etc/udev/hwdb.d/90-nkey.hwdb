@@ -1,5 +1,8 @@
 evdev:input:b0003v0B05p1866*
+  KEYBOARD_KEY_c00b6=kbdillumdown # Fn+F2
+  KEYBOARD_KEY_c00b5=kbdillumup   # Fn+F4
   KEYBOARD_KEY_ff3100c5=pagedown  # Fn+Down
   KEYBOARD_KEY_ff3100c4=pageup    # Fn+Up
   KEYBOARD_KEY_ff3100b2=home      # Fn+Left
   KEYBOARD_KEY_ff3100b3=end       # Fn+Right
+  
