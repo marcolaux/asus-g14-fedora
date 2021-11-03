@@ -42,7 +42,7 @@ dnf install brightnessctl
 
 **4. Reboot**
 
-**5. You can switch your prefered graphics mode via the GNOME Shell extension "asusctl-gex" or with "asusctl graphics -m (graphics mode)"**
+**5. You can switch your prefered graphics mode via the GNOME Shell extension "asusctl-gex" or with "supergfxctl -m (graphics mode)"**
 
 ---
 
