@@ -4,11 +4,11 @@
 
 This Git repo describes how I setup the ASUS Zephyrus G14 (GA401IV) with Fedora 35 including a GNOME Shell extension to switch between GPUs and ROG profiles.
 
-**This is my personal config, no official guide**.<br>If you want support from the asus-linux community please have a look at the official install guide here: ![https://asus-linux.org/wiki/fedora-guide/](https://asus-linux.org/wiki/fedora-guide/)
+**This is my personal config, no official guide**.<br>If you want support from the asus-linux community please have a look at the official install guide here: [https://asus-linux.org/wiki/fedora-guide/](https://asus-linux.org/wiki/fedora-guide/)
 
 ## Installation process
 
-**1. Follow the guide on ![https://asus-linux.org/wiki/fedora-guide/](https://asus-linux.org/wiki/fedora-guide/)**
+**1. Follow the guide on [https://asus-linux.org/wiki/fedora-guide/](https://asus-linux.org/wiki/fedora-guide/)**
 
 **2. copy all the files to the appropriate directories**
 
@@ -49,10 +49,10 @@ dnf install brightnessctl
 
 ## GUI for controlling asusctl
 
-- ![asusctl-gex (GNOME Shell extension)](https://gitlab.com/asus-linux/asusctl-gex/-/releases)
+- [asusctl-gex (GNOME Shell extension)](https://gitlab.com/asus-linux/asusctl-gex/-/releases)
 
 ## asusctl
 
-for more information on asusctl have a look here: ![asus-linux.org)](https://asus-linux.org)
+for more information on asusctl have a look here: [asus-linux.org)](https://asus-linux.org)
 
 also custom fan curves are supported via the kernel now.
