@@ -1,4 +1,0 @@
-#!/bin/sh
-echo "resetting keyboard backlight"
-brightnessctl -d asus::kbd_backlight s 1
-brightnessctl -d asus::kbd_backlight s 0
