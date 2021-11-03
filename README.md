@@ -1,4 +1,4 @@
-# Fedora 34 Setup with an ASUS Zephyrus G14 2020 model
+# Fedora 35 Setup with an ASUS Zephyrus G14 2020 model
 
 ---
 
