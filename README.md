@@ -38,7 +38,7 @@ systemctl enable asusctl_hibernate.service
 dnf install brightnessctl
 ```
 
-> brightnessctl is used for controlling the keyboard backlight before and after suspend as there is a bug that the keyboard backlight sometimes does not switch completely off while suspending. I also use it to control the brightness with the keyboard as I'm overriding the default keys with page up / down.
+> brightnessctl is used for controlling the keyboard backlight as I'm overriding the default keys with page up / down before. you can map brightnessctl then in your DE to a key you want.
 
 **4. Reboot**
 
