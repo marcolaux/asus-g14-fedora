@@ -1,6 +1,6 @@
 #!/bin/sh
 sudo cp etc/modprobe.d/* /etc/modprobe.d/
 sudo systemctl disable asusgpuboot
-sudo cp etc/systemd/system/asusgpuboot.service /etc/systemd/system/
+sudo cp etc/systemd/system/* /etc/systemd/system/
 sudo cp usr/bin/* /usr/bin/
 sudo systemctl enable asusgpuboot
