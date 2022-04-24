@@ -1,6 +1,6 @@
 [Unit]
 Description=dGPU boot enable/disable script...
-Before=display-manager.target
+Before=graphical.target
 After=suspend.target
 
 [Service]
@@ -9,5 +9,5 @@ Type=simple
 ExecStart=/usr/bin/asusgpuboot
 
 [Install]
-WantedBy=display-manager.target
+WantedBy=graphical.target
 WantedBy=suspend.target
