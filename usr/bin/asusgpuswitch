@@ -17,7 +17,9 @@ if [[ $GPUFILEPRESENT == false ]]; then
   systemctl stop display-manager
 
   echo "acpi_call to power on the dGPU"
-  sudo sh -c 'echo "\\_SB.PCI0.GPP0.PG00._ON" > /proc/acpi/call'
+  # sudo sh -c 'echo "\\_SB.PCI0.GPP0.PG00._ON" > /proc/acpi/call'
+  echo 1 > /sys/bus/pci/rescan
+  sleep 1
 
   echo "loading nvidia kernel modules"
   modprobe nvidia_uvm
@@ -42,8 +44,11 @@ else
   rmmod nvidia_modeset
   rmmod nvidia
 
+  sleep 1
+  
   echo "acpi_call to power off the dGPU"
-  sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
 
   echo "removing /etc/asus_nvidia"
   rm /etc/asus_nvidia

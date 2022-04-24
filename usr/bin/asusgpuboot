@@ -19,6 +19,7 @@ if [ $GPUFILEPRESENT == true ]; then
   powerprofilesctl set balanced
 else
   echo "deactivating nvidia"
-  sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
   powerprofilesctl set power-saver
 fi
