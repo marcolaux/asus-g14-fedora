@@ -7,10 +7,10 @@ if [ -f $GPUFILE ]; then
   GPUFILEPRESENT=true
 else
   echo "$GPUFILE does not exist."
-  GPUPRESENT=false
+  GPUFILEPRESENT=false
 fi
 
-if [ $GPUFILEPRESENT == true ]; then
+if [ $GPUFILEPRESENT = "true" ]; then
   echo "activating and loading Nvidia"
   modprobe nvidia_uvm
   modprobe nvidia_drm

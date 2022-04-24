@@ -10,7 +10,7 @@ else
   GPUFILEPRESENT=false
 fi
 
-if [[ $GPUFILEPRESENT == false ]]; then
+if [ $GPUFILEPRESENT = "false" ]; then
   echo "set to Nvidia mode flag and restart the display manager"
 
   echo "stopping the display-manager"
