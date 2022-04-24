@@ -1,0 +1,56 @@
+#!/bin/bash
+
+GPUFILE=/etc/asus_nvidia
+
+if [ -f $GPUFILE ]; then
+  echo "$GPUFILE exists."
+  GPUFILEPRESENT=true
+else
+  echo "$GPUFILE does not exist."
+  GPUFILEPRESENT=false
+fi
+
+if [[ $GPUFILEPRESENT == false ]]; then
+  echo "set to Nvidia mode flag and restart the display manager"
+
+  echo "stopping the display-manager"
+  systemctl stop display-manager
+
+  echo "acpi_call to power on the dGPU"
+  sudo sh -c 'echo "\\_SB.PCI0.GPP0.PG00._ON" > /proc/acpi/call'
+
+  echo "loading nvidia kernel modules"
+  modprobe nvidia_uvm
+  modprobe nvidia_drm
+  modprobe nvidia_modeset
+  modprobe nvidia
+
+  echo "setting /etc/asus_nvidia"
+  touch /etc/asus_nvidia
+
+  echo "setting power profile to balanced"
+  powerprofilesctl set balanced
+
+  echo "restarting display manager"
+  systemctl restart display-manager.service
+else
+  systemctl stop display-manager
+
+  echo "removing nvidia kernel modules"
+  rmmod nvidia_uvm
+  rmmod nvidia_drm
+  rmmod nvidia_modeset
+  rmmod nvidia
+
+  echo "acpi_call to power off the dGPU"
+  sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+
+  echo "removing /etc/asus_nvidia"
+  rm /etc/asus_nvidia
+
+  echo "setting power profile to power-saver"
+  powerprofilesctl set power-saver
+
+  echo "restarting display manager"
+  systemctl restart display-manager.service
+fi

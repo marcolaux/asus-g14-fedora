@@ -6,7 +6,7 @@ After=suspend.target
 [Service]
 User=root
 Type=simple
-ExecStart=/usr/sbin/asus_gpu_boot
+ExecStart=/usr/bin/asusgpuboot
 
 [Install]
 WantedBy=graphical.target
