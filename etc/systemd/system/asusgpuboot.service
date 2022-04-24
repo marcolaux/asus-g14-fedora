@@ -1,6 +1,6 @@
 [Unit]
-Description=ASUS G14 GPU boot script...
-Before=graphical.target
+Description=dGPU boot enable/disable script...
+Before=multi-user.target
 After=suspend.target
 
 [Service]
@@ -9,5 +9,5 @@ Type=simple
 ExecStart=/usr/bin/asusgpuboot
 
 [Install]
-WantedBy=graphical.target
+WantedBy=multi-user.target
 WantedBy=suspend.target
