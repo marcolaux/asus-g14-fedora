@@ -1,5 +1,20 @@
 #!/bin/bash
 
+isroot=false
+
+if [ ! -z "$SUDO_USER" ]; then
+  isroot=true
+fi
+
+if [ "$EUID" -ne 0 ]; then
+  isroot=true
+fi
+
+if [ $isroot = "false" ]; then
+  echo "root / sudo user expected, exiting"
+  exit 1
+fi
+
 GPUFILE=/etc/asus_nvidia
 
 if [ -f $GPUFILE ]; then
@@ -23,3 +38,5 @@ else
   echo 'auto' > /sys/bus/pci/devices/0000\:01\:00.0/power/control
   # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
 fi
+
+exit 0
