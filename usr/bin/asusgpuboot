@@ -16,7 +16,6 @@ if [ $GPUFILEPRESENT = "true" ]; then
   modprobe nvidia_drm
   modprobe nvidia_modeset
   modprobe nvidia
-  powerprofilesctl set balanced
 else
   echo "deactivating nvidia"
   echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
