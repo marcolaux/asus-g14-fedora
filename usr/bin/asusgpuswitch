@@ -47,6 +47,8 @@ else
   echo "acpi_call to power off the dGPU"
   # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
   echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
+  echo 'auto' > /sys/bus/pci/devices/0000\:01\:00.0/power/control
+  
   sleep 1
 
   echo "removing /etc/asus_nvidia"

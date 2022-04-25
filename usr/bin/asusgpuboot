@@ -20,5 +20,6 @@ if [ $GPUFILEPRESENT = "true" ]; then
 else
   echo "deactivating nvidia"
   echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
+  echo 'auto' > /sys/bus/pci/devices/0000\:01\:00.0/power/control
   # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
 fi
