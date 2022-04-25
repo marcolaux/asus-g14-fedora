@@ -32,3 +32,13 @@ This though (just using acpi_call to power device off and leaving it in the devi
 By just removing the device from the tree succeeded though in a stable environment with the dPGU off.
 
 I'm not sure why supergfxctl doesn't do the trick at the moment as I thought the behaviour would be the same as the device is also not available in the device tree after selecting `integrated`.
+
+## How to use
+
+- remove `supergfxctl / gpu-manager / optimus-manager or what not`
+- check for remaining files in `/etc/modprobe.d/` with `nvidia` references
+- `git clone https://github.com/hyphone/asus-g14-fedora.git`
+- `git checkout old-switching`
+- `cd asus-g14-fedora`
+- `sudo ./install` to install the scripts and services
+- `systemctl start asusgpuswitch` to switch between hybrid and integrated
