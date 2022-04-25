@@ -25,6 +25,7 @@ if [ $GPUFILEPRESENT = "false" ]; then
   echo "loading nvidia kernel modules"
   modprobe nvidia_uvm
   modprobe nvidia_drm
+  rmmod nvidia_modeset
   modprobe nvidia
 
   echo "setting /etc/asus_nvidia"
