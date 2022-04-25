@@ -1,32 +1,17 @@
 #!/bin/bash
 
-if [ -d "/sys/bus/pci/devices/0000:01:00.0/" ]; then
-  echo "dGPU present"
-  echo "stopping display-manager"
-  systemctl stop display-manager
-  sleep 1
+GPUFILE=/etc/asus_nvidia
 
-  echo "removing nvidia kernel modules"
-  rmmod nvidia_uvm
-  rmmod nvidia_drm
-  rmmod nvidia_modeset
-  rmmod nvidia
-
-  sleep 1
-
-  echo "acpi_call to power off the dGPU"
-  # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
-  echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
-
-  sleep 1
-
-  echo "removing /etc/asus_nvidia"
-  rm /etc/asus_nvidia
-
-  echo "restarting display manager"
-  systemctl restart display-manager.service
+if [ -f $GPUFILE ]; then
+  echo "$GPUFILE exists."
+  GPUFILEPRESENT=true
 else
-  echo "dGPU not present"
+  echo "$GPUFILE does not exist."
+  GPUFILEPRESENT=false
+fi
+
+if [ $GPUFILEPRESENT = "false" ]; then
+  echo "set to Nvidia mode flag and restart the display manager"
 
   echo "stopping the display-manager"
   systemctl stop display-manager.service
@@ -48,6 +33,29 @@ else
 
   echo "setting /etc/asus_nvidia"
   touch /etc/asus_nvidia
+
+  echo "restarting display manager"
+  systemctl restart display-manager.service
+else
+  systemctl stop display-manager
+  sleep 1
+
+  echo "removing nvidia kernel modules"
+  rmmod nvidia_uvm
+  rmmod nvidia_drm
+  rmmod nvidia_modeset
+  rmmod nvidia
+
+  sleep 1
+
+  echo "acpi_call to power off the dGPU"
+  # sh -c 'echo "\\_SB.PCI0.GPP0.PG00._OFF" > /proc/acpi/call'
+  echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
+
+  sleep 1
+
+  echo "removing /etc/asus_nvidia"
+  rm /etc/asus_nvidia
 
   echo "restarting display manager"
   systemctl restart display-manager.service

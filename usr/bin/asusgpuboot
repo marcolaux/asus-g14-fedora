@@ -1,6 +1,16 @@
 #!/bin/bash
 
-if [ -d "/sys/bus/pci/devices/0000:01:00.0/" ]; then
+GPUFILE=/etc/asus_nvidia
+
+if [ -f $GPUFILE ]; then
+  echo "$GPUFILE exists."
+  GPUFILEPRESENT=true
+else
+  echo "$GPUFILE does not exist."
+  GPUFILEPRESENT=false
+fi
+
+if [ $GPUFILEPRESENT = "true" ]; then
   echo "activating and loading Nvidia"
   modprobe nvidia_uvm
   modprobe nvidia_drm
