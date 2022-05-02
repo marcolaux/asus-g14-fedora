@@ -49,7 +49,7 @@ dnf install brightnessctl
 
 ## GUI for controlling asusctl
 
-- [asusctl-gex (GNOME Shell extension)](https://gitlab.com/asus-linux/asusctl-gex/-/releases)
+- [asusctl-gex (GNOME Shell extension)](https://extensions.gnome.org/extension/4320/asusctl-gex/)
 
 ## asusctl
 
